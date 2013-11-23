@@ -1,0 +1,41 @@
+<aside class="r">
+	<section class="widget">
+		<h3>分类目录</h3>
+		<ul>
+			<% cates.forEach(function(cate){ %>
+			<li class="cat-item">
+				<a href="/category/<%- cate.slug %>"><%- cate.name%></a> (<%- cate.count%>)
+				<%if (cate.children){%>
+					<ul>
+						<% cate.children.forEach(function(ccate){ %>
+						<li class="cat-item">
+							<a href="/category/<%- cate.slug %>/<%- ccate.slug %>"><%- ccate.name%></a> (<%- ccate.count%>)
+						</li>
+						<% })%>
+					</ul>
+				<%}%>
+			</li>
+			<% })%>
+		</ul>
+	</section>
+	<section class="widget">
+		<h3>近期文章</h3>
+		<ul>
+			<% recentPosts.forEach(function(post){ %>
+			<li>
+				<a href="/<%- post.post_name%>.html"><%- post.post_title%></a>
+			</li>
+			<% })%>
+		</ul>
+	</section>
+	<section class="widget">
+		<h3>友情链接</h3>
+		<ul>
+			<% links.forEach(function(link){ %>
+			<li>
+				<a href="<%- link.link_url%>" target="_blank"><%- link.link_name%></a>
+			</li>
+			<% })%>
+		</ul>
+	</section>
+</aside>

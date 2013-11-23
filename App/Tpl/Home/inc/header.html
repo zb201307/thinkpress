@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=980" />
+	<title><%= options.blogname %></title>
+	<meta name="keywords" content="<%= options.blogname %>" />
+	<meta name="description" content="<%= options.blogdescription %>" />
+	<link rel="stylesheet" type="text/css" media="all" href="/resource/css/style.css" />
+	<link rel="stylesheet" href="/resource/css/syntaxhighlighter.css">
+	<link rel="pingback" href="" />
+</head>
+<body>
+<header>
+	<div class="g98 clearfix">
+		<h1 class="logo l">
+		<a href="/" title="<%= options.blogname %> - <%= options.blogdescription %>">
+			<img title="<%= options.blogname %>" src="/resource/img/logo.png"  alt="<%= options.blogname %>" />
+		</a>
+		</h1>
+		<nav class="l">
+			<ul>
+			<li class="first <?php if ( is_home() ) { echo 'current_page_item'; }?>">
+			<a href="/">首页</a>
+			</li></ul>
+			<!---->
+		</nav>
+
+		<div class="search r">
+			<form id="searchform" method="get" action="/">
+			<input type="search" class="si" placeholder="请输入关键字搜索" size="35" maxlength="50" name="s" id="s" x-webkit-speech x-webkit-grammar="builtin:translate" />
+			</form>
+		</div>
+		<a href="/feed" title="rss" class="rss r">
+			<img src="/resource/img/rss.png">
+		</a>
+	</div>
+</header>
+<div class="wrapper g98 clearfix" >

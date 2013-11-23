@@ -1,0 +1,26 @@
+<% include inc/header.html %>
+
+<div id="content">
+	<% posts.forEach(function(post){ %>
+	<article class="item clearfix">
+		<h2 class="title">
+			<a href="/<%= post.post_name %>.html"><%- post.post_title %></a>
+		</h2>
+		<p class="desc">
+
+		</p>
+		<summary class="clearfix">
+			<%- post.post_content %>
+		</summary>
+		<div class="date" title="">
+			<div class="md"><%- post.md%></div>
+			<div class="y"><%- post.year%></div>
+		</div>
+	</article>
+	<% })%>
+	<div class="highline"></div>
+</div>
+
+<% include inc/aside.html %>
+
+<% include inc/footer.html %>
