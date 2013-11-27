@@ -45,22 +45,15 @@ module.exports = Controller(function(){
             var model = D('TermTaxonomy');
             var self = this;
             return model.getCateList().then(function(data){
+                
                 self.assign("cates", data || []);
             });
         },
         indexAction: function(){
             var self = this;
-            var all = [
-                this.getLinks(),
-                this.getOptions(),
-                this.getPosts(),
-                this.getRecentPosts(),
-            ];
-            var self = this;
-            when.all(all).then(function(){
-                return self.getCates().then(function(){
-                    self.display();
-                })
+            this.getCates().then(function(){
+                console.log("getCates then ...")
+                self.display();
             })
         },
         /**

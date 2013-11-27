@@ -1,0 +1,49 @@
+<html>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>ThinkPress管理后台</title>
+    <head>
+        <link rel="stylesheet" href="/resource/module/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/resource/module/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="/resource/module/codemirror/theme/solarized.css">
+        <link rel="stylesheet" href="/resource/css/admin.css" />
+
+        <script src="/resource/module/jquery/1.9.1/jquery.js"></script>
+        <script src="/resource/module/bootstrap/js/bootstrap.js"></script>
+        <script src="/resource/module/codemirror/lib/codemirror.js"></script>
+        <script src="/resource/module/codemirror/mode/markdown.js"></script>
+    </head>
+    <body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/admin/">ThinkPress管理后台</a>
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">文章 <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/admin/post/list">文章列表</a></li>
+        <li><a href="/admin/post/item">添加文章</a></li>
+      </ul>
+    </li>
+      <li ><a href="/admin/cate/list">分类</a></li>
+      <li ><a href="/admin/page/list">页面</a></li>
+      <li ><a href="/admin/link/list">友情链接</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">welefen <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">退出</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+<div class="container" style="padding-top:50px;">

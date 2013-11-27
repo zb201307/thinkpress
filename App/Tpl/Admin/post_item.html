@@ -1,0 +1,62 @@
+<% include inc/header.html %>
+  <div class="row">
+    <div class="col-md-9">
+      <h3>添加文章</h3>
+      <form role="form">
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="标题">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">固定链接</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="固定链接">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">内容（markdown语法）</label>
+          <textarea name="" class="form-control" id="content_field" cols="30" rows="10"></textarea>
+        </div>
+        </form>
+    </div>
+    <div class="col-md-3">
+      <h3>&nbsp;</h3>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">发布</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">分类目录</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">标签</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% include inc/footer.html %>
+<script>
+$(function(){
+  var editor = CodeMirror.fromTextArea(document.getElementById("content_field"), {
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true,
+      mode: "markdown"
+  });
+  editor.setOption("theme", "solarized dark")
+})
+</script>
