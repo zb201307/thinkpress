@@ -9,6 +9,9 @@ module.exports = Controller(function(){
 			if (this.http.action != "login") {
 				this.checkLogin();
 			};
+			if (this.navType) {
+				this.assign("navType", this.navType);
+			};
 		},
 		/**
 		 * 检测是否登录

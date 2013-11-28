@@ -27,16 +27,16 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
+      <li class="dropdown <% if(navType == 'post'){ %>active<% } %>">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">文章 <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="/admin/post/list">文章列表</a></li>
         <li><a href="/admin/post/item">添加文章</a></li>
       </ul>
     </li>
-      <li ><a href="/admin/cate/list">分类</a></li>
-      <li ><a href="/admin/page/list">页面</a></li>
-      <li ><a href="/admin/link/list">友情链接</a></li>
+      <li <% if(navType == 'cate'){ %>class="active"<% } %>><a href="/admin/cate/list">分类</a></li>
+      <li <% if(navType == 'page'){ %>class="active"<% } %>><a href="/admin/page/list">页面</a></li>
+      <li <% if(navType == 'link'){ %>class="active"<% } %>><a href="/admin/link/list">友情链接</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">welefen <b class="caret"></b></a>
         <ul class="dropdown-menu">
