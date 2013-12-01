@@ -50,11 +50,7 @@ module.exports = Controller(function(){
             });
         },
         indexAction: function(){
-            var self = this;
-            this.getCates().then(function(){
-                console.log("getCates then ...")
-                self.display();
-            })
+            this.end("index");
         },
         /**
          * 分类

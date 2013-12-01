@@ -10,7 +10,8 @@
         <script src="/resource/module/jquery/1.9.1/jquery.js"></script>
         <script src="/resource/module/bootstrap/js/bootstrap.js"></script>
         <script src="/resource/module/codemirror/lib/codemirror.js"></script>
-        <script src="/resource/module/codemirror/mode/markdown.js"></script>
+        <script src="/resource/module/codemirror/mode/markdown/markdown.js"></script>
+        <script src="/resource/js/admin/thinkpress.js"></script>
     </head>
     <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -36,6 +37,7 @@
     </li>
       <li <% if(navType == 'cate'){ %>class="active"<% } %>><a href="/admin/cate/list">分类</a></li>
       <li <% if(navType == 'page'){ %>class="active"<% } %>><a href="/admin/page/list">页面</a></li>
+      <li <% if(navType == 'tag'){ %>class="active"<% } %>><a href="/admin/tag/list">标签</a></li>
       <li <% if(navType == 'link'){ %>class="active"<% } %>><a href="/admin/link/list">友情链接</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">welefen <b class="caret"></b></a>

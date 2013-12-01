@@ -1,18 +1,18 @@
 <% include inc/header.html %>
   <div class="row">
     <div class="col-md-9">
-      <h3>添加文章</h3>
+      <h3><%if(item.id){%>修改<%}else{%>添加<%}%>文章</h3>
       <form role="form">
         <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="标题">
+          <input type="text" value="<%-item.title%>" class="form-control" id="field_title" placeholder="标题">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">固定链接</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="固定链接">
+          <input type="text" value="<%-item.alias_title%>" class="form-control" id="field_alias_title" placeholder="固定链接">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">内容（markdown语法）</label>
-          <textarea name="" class="form-control" id="content_field" cols="30" rows="10"></textarea>
+          <textarea name="" class="form-control" id="field_content" cols="30" rows="10"><%-item.markdown_content%></textarea>
         </div>
         </form>
     </div>
@@ -24,7 +24,7 @@
           <h3 class="panel-title">发布</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          <button type="button" class="btn btn-primary btn-publish">发表</button>
         </div>
       </div>
 
@@ -33,7 +33,11 @@
           <h3 class="panel-title">分类目录</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          <ul id="cateList" class="list-unstyled">
+          <% cate.forEach(function(item){ %>
+            <li class="checkbox"><label><input type="checkbox" value="<%- item.id%>"> <%- item.name%></label></li>
+          <%})%>
+          </ul>
         </div>
       </div>
 
@@ -42,21 +46,14 @@
           <h3 class="panel-title">标签</h3>
         </div>
         <div class="panel-body">
-          Panel content
+           <input type="email" class="form-control" id="field_tag" placeholder="添加标签，多个用英文逗号隔开">
+            <div class="postTagList">
+              
+            </div>
         </div>
       </div>
 
     </div>
   </div>
 <% include inc/footer.html %>
-<script>
-$(function(){
-  var editor = CodeMirror.fromTextArea(document.getElementById("content_field"), {
-      lineNumbers: true,
-      styleActiveLine: true,
-      matchBrackets: true,
-      mode: "markdown"
-  });
-  editor.setOption("theme", "solarized dark")
-})
-</script>
+<script src="/resource/js/admin/post.js"></script>

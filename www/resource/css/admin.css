@@ -1,1 +1,8 @@
 body{font-size: 16px}
+.postTagList{
+	margin-top: 10px
+}
+.postTagList a.btn{margin-right: 5px;margin-bottom: 5px;cursor: default}
+.postTagList a.btn sup{margin-left: 10px;display: none;font-weight: bold;cursor: pointer;}
+.postTagList a.btn:hover sup{display: inline;}
+.CodeMirror{height: 420px;}
