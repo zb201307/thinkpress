@@ -1,0 +1,43 @@
+<% include inc/header.html %>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>文章列表<a href="/admin/post/item" class="btn btn-primary pull-right">新增</a></h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>日期</th>
+            <th width="120">分类</th>
+            <th width="120">标签</th>
+            <th width="80">状态</th>
+            <th width="80">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%list.forEach(function(item){%>
+          <tr>
+            <td><%-item.id%></td>
+            <td><%-item.title%></td>
+            <td><%-item.date%></td>
+            <td></td>
+            <td></td>
+            <td><%-item.status%></td>
+            <td><a href="/admin/post/item?id=<%-item.id%>" title="编辑" class="glyphicon glyphicon-edit"></a>
+            <a title="删除" class="glyphicon glyphicon-remove"></a></td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+      <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
+  </div>
+<% include inc/footer.html %>

@@ -1,0 +1,42 @@
+<% include inc/header.html %>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>分类列表<a href="/admin/post/item" class="btn btn-primary" style="float:right">新增</a></h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="60"><input type="checkbox" name="" value=""></th>
+            <th width="60">ID</th>
+            <th width="200">名称</th>
+            <th width="200">别名</th>
+            <th>描述</th>
+            <th width="80">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(function(item){ %>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td><%- item.id%></td>
+            <td><%= item.name%></td>
+            <td><%= item.alias_name%></td>
+            <td><%= item.desc%></td>
+            <td><span title="编辑" class="glyphicon glyphicon-edit"></span>
+            <span title="删除" class="glyphicon glyphicon-remove"></span></td>
+          </tr>
+          <% })%>
+        </tbody>
+      </table>
+      <ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+
+    </div>
+  </div>
+<% include inc/footer.html %>
