@@ -43,10 +43,12 @@ module.exports = inherits("Admin/BaseController", function(){
 					});
 					allPromise.push(itemPromise);
 					//获取分类
-					var catePromise = this.model("PostCate").select(id).then(function(data){
-						console.log(data);
+					var postCatePromise = this.model("PostCate").getCateIds(id).then(function(data){
+						self.assign("cate_ids", data);
 					})
+					allPromise.push(postCatePromise);
 					//获取标签
+					var postTagPromise = this.model("PostTag");
 				};
 				var catePromise = this.model("Cate")._adminGetList(true).then(function(data){
 					if (!is_empty(data)) {

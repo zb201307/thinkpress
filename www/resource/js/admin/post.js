@@ -34,12 +34,12 @@ $(function(){
 			$('.postTagList a.btn span').each(function(){
 				tag.push($(this).html());
 			});
-			data.tag = tag;
+			data.tag = tag.join(",");
 			var cate_ids = [];
 			$('#cateList input:checked').each(function(){
 				cate_ids.push(this.value);
 			})
-			data.cate_ids = cate_ids;
+			data.cate_ids = cate_ids.join(",");
 			$.postData("/admin/post/item", data).then(function(){
 				location.href = '/admin/post/list';
 			})

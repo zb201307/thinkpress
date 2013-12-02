@@ -50,9 +50,13 @@ var model = module.exports = Model(function(){
                 delete data.id;
                 return this.update(data, id);
             };
+            var self = this;
             return this.add(data).then(function(insertId){
                 if (insertId) {
-                    
+                    var tags = (data.tag || "").split(",");
+                    if (tags.length) {
+                        D("PostTag").updatePostTag(insertId, tags);
+                    };
                 };
             });
         }

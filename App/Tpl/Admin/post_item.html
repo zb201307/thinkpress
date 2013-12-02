@@ -35,7 +35,7 @@
         <div class="panel-body">
           <ul id="cateList" class="list-unstyled">
           <% cate.forEach(function(item){ %>
-            <li class="checkbox"><label><input type="checkbox" value="<%- item.id%>"> <%- item.name%></label></li>
+            <li class="checkbox"><label><input type="checkbox" <%if(cate_ids.indexOf(item.id)>-1){%>checked<%}%> value="<%- item.id%>"> <%- item.name%></label></li>
           <%})%>
           </ul>
         </div>
