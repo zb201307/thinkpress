@@ -14,7 +14,9 @@ module.exports = inherits("Admin/BaseController", function(){
 				self.assign("post", data || []);
 				self.display();
 			});
-			
+		},
+		testAction: function(){
+			this.end();
 		}
 	}
 })

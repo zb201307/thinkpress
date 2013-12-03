@@ -36,6 +36,7 @@ module.exports = inherits("Admin/BaseController", function(){
 				var id = this.get("id");
 				var allPromise = [];
 				self.assign("item", {});
+				self.assign("cate_ids", []);
 				if (id) {
 					//获取详细信息
 					var itemPromise = model.find(id).then(function(data){
