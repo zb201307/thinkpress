@@ -35,6 +35,19 @@ var model = module.exports = Model(function(){
 			return when.all(allPromise).then(function(){
 				return tag_ids;
 			});
+		},
+		/**
+		 * 通过id获取标签名
+		 * @param  {[type]} ids [description]
+		 * @return {[type]}     [description]
+		 */
+		getNames: function(ids){
+			if (!is_array(ids)) {
+				return get_promise(false);
+			};
+			return this.where({
+				id: ["IN", ids]
+			}).field("id,name").select();
 		}
 	}		
 })

@@ -35,29 +35,37 @@ module.exports = inherits("Admin/BaseController", function(){
 			if (this.isGet()) {
 				var id = this.get("id");
 				var allPromise = [];
-				self.assign("item", {});
-				self.assign("cate_ids", []);
+				//设置初始化数据，减少在模版里的数据类型判断
+				self.assign({
+					item: {},
+					cate_ids: [],
+					cate: [],
+					tag: []
+				});
 				if (id) {
 					//获取详细信息
 					var itemPromise = model.find(id).then(function(data){
 						self.assign("item", data || {})
 					});
 					allPromise.push(itemPromise);
-					//获取分类
+					//获取已经选择的分类id
 					var postCatePromise = this.model("PostCate").getCateIds(id).then(function(data){
-						self.assign("cate_ids", data);
+						self.assign("cate_ids", data || []);
 					})
 					allPromise.push(postCatePromise);
 					//获取标签
-					var postTagPromise = this.model("PostTag");
+					var postTagModel = this.model("PostTag");
+					var postTagPromise = postTagModel.getPostTag(id).then(function(data){
+						self.assign("tag", data || []);
+					});
+					allPromise.push(postTagPromise);
 				};
+				//分类列表
 				var catePromise = this.model("Cate")._adminGetList(true).then(function(data){
-					if (!is_empty(data)) {
-						self.assign("cate", data);
-					};
+					self.assign("cate", data || []);
 				});
 				allPromise.push(catePromise);
-
+				//
 				when.all(allPromise).then(function(){
 					self.display();
 				})

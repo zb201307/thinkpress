@@ -26,6 +26,7 @@ $(function(){
 			var alias_title = $('#field_alias_title').val();
 			var content = editor.getValue();
 			var data = {
+				id: $('#field_id').val() | 0,
 				title: title,
 				alias_title: alias_title,
 				markdown_content: content

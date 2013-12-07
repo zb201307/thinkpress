@@ -12,10 +12,10 @@ var model = module.exports = Model(function(){
          */
         _adminPostList: function(http){
             var order = http.get.order || "id DESC";
-            return this.field("id,title,status,date").page(http.get.page).order(order).select().then(function(data){
+            return this.field("id,title,status,datetime").page(http.get.page).order(order).select().then(function(data){
                 return data.map(function(item){
-                    var date = new Date(item.date);
-                    item.date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    item.datetime = get_dateTime(item.datetime);
+                    console.log(item.datetime);
                     return item;
                 })
             })
@@ -44,11 +44,13 @@ var model = module.exports = Model(function(){
             var data = http.post;
             var content = markdown.toHTML(data.markdown_content);
             data.content = content;
-            data.date = get_date();
+            data.datetime = get_dateTime();
             if (data.id) {
                 var id = data.id;
                 delete data.id;
-                return this.update(data, id);
+                return this.update(data, id).then(function(){
+
+                });
             };
             var self = this;
             return this.add(data).then(function(insertId){
