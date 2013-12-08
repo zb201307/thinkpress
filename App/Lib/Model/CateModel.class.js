@@ -29,15 +29,6 @@ var model = module.exports = Model(function(){
                     id: ["IN", id]
                 }).delete();
             }
-        },
-    	/**
-    	 * 获取友情链接列表
-    	 * @return {[type]} [description]
-    	 */
-        getLinks: function(){
-        	return this.field("link_url,link_name,link_target").where({
-                link_visible: "Y"
-            }).cache(3600 * 24).select();
         }
     }
 })

@@ -74,6 +74,15 @@ $(function(){
 		},
 		'.postTagList a.btn sup': function(){
 			$(this).parents("a.btn").remove();
+		},
+		'a.glyphicon-remove': function(event){
+			event.preventDefault();
+			$(this).popover({
+				animation: true,
+				html: "确认删除么？",
+				title: "提示",
+				content: "确认删除么"
+			})
 		}
 	})
 })

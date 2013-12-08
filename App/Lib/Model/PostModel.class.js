@@ -13,10 +13,30 @@ var model = module.exports = Model(function(){
         _adminPostList: function(http){
             var order = http.get.order || "id DESC";
             return this.field("id,title,status,datetime").page(http.get.page).order(order).select().then(function(data){
-                return data.map(function(item){
+                var post_ids = [];
+                data = data.map(function(item){
+                    post_ids.push(item.id);
                     item.datetime = get_dateTime(item.datetime);
-                    console.log(item.datetime);
                     return item;
+                });
+                //文章标签
+                var postTagModel = D('PostTag');
+                var postTagPromise = postTagModel.getPostTag(post_ids).then(function(tags){
+                    data = data.map(function(item){
+                        item.tag = tags[item.id] || [];
+                        return item;
+                    })
+                });
+                //文章分类
+                var postCateModel = D('PostCate');
+                var postCatePromse = postCateModel.getPostCate(post_ids).then(function(cates){
+                    data = data.map(function(item){
+                        item.cate = cates[item.id] || [];
+                        return item;
+                    })
+                });
+                return when.all([postTagPromise]).then(function(){
+                    return data;
                 })
             })
         },
@@ -42,25 +62,30 @@ var model = module.exports = Model(function(){
             };
             //更新或者添加内容
             var data = http.post;
+            //获取解析后的内容
             var content = markdown.toHTML(data.markdown_content);
             data.content = content;
             data.datetime = get_dateTime();
-            if (data.id) {
-                var id = data.id;
-                delete data.id;
-                return this.update(data, id).then(function(){
-
-                });
-            };
+            //文章的id
+            var postId = data.id;
+            var promise = null;
             var self = this;
-            return this.add(data).then(function(insertId){
-                if (insertId) {
-                    var tags = (data.tag || "").split(",");
-                    if (tags.length) {
-                        D("PostTag").updatePostTag(insertId, tags);
-                    };
+            if (data.id) {
+                promise = this.update(data);
+            }else{
+                promise = this.add(data).then(function(insertId){
+                    return (postId = insertId);
+                });
+            }
+            return promise.then(function(){
+                if (!postId) {
+                    return get_promise(false);
                 };
-            });
+                var tags = (data.tag || "").split(",");
+                var cate_ids = (data.cate_ids || "").split(",");
+                D("PostTag").updatePostTag(postId, tags);
+                D("PostCate").updatePostCate(postId, cate_ids);
+            })
         }
     }
 })

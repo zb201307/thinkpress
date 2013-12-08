@@ -13,6 +13,10 @@ var model = module.exports = Model(function(){
 			var allPromise = [];
 			var tag_ids = {};
 			tags.forEach(function(item){
+				item = item.trim();
+				if (!item) {
+					return true;
+				};
 				var promise = self.where({
 					name: item
 				}).find().then(function(data){

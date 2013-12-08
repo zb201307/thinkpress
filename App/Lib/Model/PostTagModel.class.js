@@ -11,22 +11,27 @@ var model = module.exports = Model(function(){
 			};
 			var self = this;
 			//删除已有的tag_id
-			this.where({
+			return this.where({
 				post_id: post_id
-			}).delete();
-			D('Tag').getIds(tags).then(function(data){
-				var tag_ids = Object.values(data);
-				data = tag_ids.map(function(id){
-					return {
-						post_id: post_id,
-						tag_id: id
-					};
-				});
-				return self.addAll(data);
-			})
+			}).delete().then(function(){
+				if (tags.length == 0) {
+					return get_promise(true);
+				};
+				return D('Tag').getIds(tags).then(function(data){
+					var tag_ids = Object.values(data);
+					data = tag_ids.map(function(id){
+						return {
+							post_id: post_id,
+							tag_id: id
+						};
+					});
+					return self.addAll(data);
+				})
+			});
 		},
 		/**
 		 * 获取文章的标签
+		 * 可以是多个文章
 		 * @param  {[type]} post_id [description]
 		 * @return {[type]}         [description]
 		 */
