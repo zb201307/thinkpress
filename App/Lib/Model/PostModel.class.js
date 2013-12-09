@@ -13,6 +13,9 @@ var model = module.exports = Model(function(){
         _adminPostList: function(http){
             var order = http.get.order || "id DESC";
             return this.field("id,title,status,datetime").page(http.get.page).order(order).select().then(function(data){
+                if (is_empty(data)) {
+                    return [];
+                };
                 var post_ids = [];
                 data = data.map(function(item){
                     post_ids.push(item.id);
@@ -41,6 +44,25 @@ var model = module.exports = Model(function(){
             })
         },
         /**
+         * 删除文章，可以是多个文章
+         * @param  {[type]} id [description]
+         * @return {[type]}    [description]
+         */
+        _adminDeletePost: function(id){
+            var ret = '';
+            var where = is_array(id) ? {post_id: ["IN", id]} : {post_id: id};
+            var promise = this.delete(id).then(function(rows){
+                ret = rows;
+            });
+            var catePromise = D('PostCate').where(where).delete();
+            var tagPromise = D('PostTag').where(where).delete();
+            return when.all([
+                promise, catePromise, tagPromise
+            ]).then(function(){
+                return ret;
+            });
+        },
+        /**
          * 单个文章提交类操作
          * @param  {[type]} http [description]
          * @return {[type]}      [description]
@@ -49,13 +71,11 @@ var model = module.exports = Model(function(){
             var id = http.post.id;
             //删除操作
             if (http.post.method === 'delete') {
-                var ids = http.post.ids;
+                var ids = http.post.ids || [];
                 if (ids.length > 0) {
-                    return this.where({
-                        id: ["IN", ids]
-                    }).delete;
+                    return this._adminDeletePost(ids);
                 }else if(id){
-                    return this.delete(id);
+                    return this._adminDeletePost(id);
                 }else{
                     return get_promise(false);
                 }

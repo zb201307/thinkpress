@@ -16,7 +16,7 @@
         </thead>
         <tbody>
           <%list.forEach(function(item){%>
-          <tr>
+          <tr data-id="<%- item.id%>">
             <td><%-item.id%></td>
             <td><%-item.title%></td>
             <td><%-item.datetime%></td>
@@ -45,3 +45,4 @@
     </div>
   </div>
 <% include inc/footer.html %>
+<script src="/resource/js/admin/post.js"></script>

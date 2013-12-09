@@ -77,12 +77,13 @@ $(function(){
 		},
 		'a.glyphicon-remove': function(event){
 			event.preventDefault();
-			$(this).popover({
-				animation: true,
-				html: "确认删除么？",
-				title: "提示",
-				content: "确认删除么"
-			})
+			var id = $(this).parents("tr").data("id");
+			if (confirm("确认删除么？")) {
+				$.post("/admin/post/item", {
+					method:  "delete",
+					id: id
+				})
+			};
 		}
 	})
 })
