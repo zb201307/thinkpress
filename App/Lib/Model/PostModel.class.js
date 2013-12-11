@@ -156,6 +156,7 @@ var model = module.exports = Model(function(){
                 var cate_ids = (data.cate_ids || "").split(",");
                 D("PostTag").updatePostTag(postId, tags);
                 D("PostCate").updatePostCate(postId, cate_ids);
+                return 1;
             })
         }
     }

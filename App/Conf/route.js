@@ -15,7 +15,8 @@ module.exports = {
 	"/^tag\/([^/]+)\/?$/": "index/tag?tag=:1&page=1",
 	//登录页面
 	"/^login\/?$/": "admin/index/login",
-	"/^admin\/(.+)/": "admin/:1",
+	"/^logout\/?$/": "admin/index/logout",
+	"/^admin(.*)$/": "admin:1",
 	"/^index\/(.+)/": "index/:1",
 	"/^archive/": "index/archive",
 	"/^(.+)$/": "index/detail/?alias_title=:1"
