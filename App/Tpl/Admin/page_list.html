@@ -1,0 +1,31 @@
+<% include inc/header.html %>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>页面列表<a href="/admin/page/item" class="btn btn-primary pull-right">新增</a></h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width="80">ID</th>
+            <th>标题</th>
+            <th width="160">日期</th>
+            <th width="100">状态</th>
+            <th width="60">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%list.forEach(function(item){%>
+          <tr data-id="<%- item.id%>">
+            <td width="80"><%-item.id%></td>
+            <td><%-item.title%></td>
+            <td><%-item.datetime%></td>
+            <td><%-item.status%></td>
+            <td width="60"><a href="/admin/page/item?id=<%-item.id%>" title="编辑" class="glyphicon glyphicon-edit"></a>
+            <a title="删除" class="glyphicon glyphicon-remove btn-page-remove"></a></td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% include inc/footer.html %>
+<script src="/resource/js/admin/post.js"></script>

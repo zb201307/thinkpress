@@ -1,0 +1,33 @@
+<% include inc/header.html %>
+<section class="main container_12">
+    <div class="area-header"></div>
+    <div class="block-contents">
+        <div class="bg-contents"></div>
+        <h1 class="title"><%-detail.title%></h1>
+        <div class="contents">
+            <article class="entry" role="article">
+                <%if(detail.type == 'post'){%>
+                <header class="title">
+                    <time><%-detail.datetime%></time>
+                </header>
+                <%}%>
+                <div class="article"><%-detail.content%></div>
+            </article>
+            <div class="ds-thread"></div>
+            <script type="text/javascript">
+            var duoshuoQuery = {short_name:"welefen2013"};
+              (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = 'http://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0] 
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+              })();
+            </script>
+        </div>
+    </div>
+</section>
+<script src="/resource/module/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<% include inc/footer.html %>

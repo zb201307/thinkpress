@@ -1,0 +1,23 @@
+<% include inc/header.html %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3><%if(item.id){%>修改<%}else{%>添加<%}%>页面</h3>
+      <form role="form">
+        <input type="hidden" id="field_id" value="<%-item.id%>" />
+        <div class="form-group">
+          <input type="text" value="<%-item.title%>" class="form-control" id="field_title" placeholder="标题">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">固定链接</label>
+          <input type="text" value="<%-item.alias_title%>" class="form-control" id="field_alias_title" placeholder="固定链接">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">内容（markdown语法）</label>
+          <textarea name="" class="form-control" id="field_content" cols="30" rows="10"><%-item.markdown_content%></textarea>
+        </div>
+        <button class="btn btn-primary btn-page-save">提交</button>
+        </form>
+    </div>
+  </div>
+<% include inc/footer.html %>
+<script src="/resource/js/admin/post.js"></script>
