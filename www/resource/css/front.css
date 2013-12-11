@@ -1016,14 +1016,14 @@ footer.footer {
 	background-color: #383838;
 }
 footer.footer .footer-content {
-	height: 30px;
+	height: 40px;
 }
 footer.footer .footer-content .copyright {
 	text-align: right;
 }
 footer.footer .footer-content .copyright span {
-	line-height: 30px;
-	font-size: 0.8em;
+	line-height: 40px;
+	font-size: 14px;
 	color: #a1a1a1;
 }
 footer.footer .footer-content .copyright span a {

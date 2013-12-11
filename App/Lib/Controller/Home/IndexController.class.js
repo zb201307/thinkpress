@@ -4,6 +4,11 @@
  */
 module.exports = Controller(function(){
     return {
+        init: function(http){
+            this.super("init", http);
+            //设置选项
+            this.assign("options", {});
+        },
         indexAction: function(){
             var model = D("Post");
             var self = this;
