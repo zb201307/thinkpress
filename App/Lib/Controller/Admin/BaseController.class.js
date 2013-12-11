@@ -4,6 +4,7 @@
  */
 module.exports = Controller(function(){
 	return {
+		promise: null,
 		init: function(http){
 			this.super("init", http);
 			if (this.http.action != "login") {
@@ -18,7 +19,16 @@ module.exports = Controller(function(){
 		 * @return {[type]} [description]
 		 */
 		checkLogin: function(){
-			
+			var self = this;
+			var deferred = when.defer();
+			this.session("login").then(function(value){
+				if (is_empty(value)) {
+					deferred.reject();
+					return self.redirect("/login");
+				};
+				deferred.resolve();
+			})
+			this.promise = deferred.promise;
 		}
 	}
 })

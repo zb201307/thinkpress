@@ -4,80 +4,63 @@
  */
 module.exports = Controller(function(){
     return {
-        getOptions: function(){
+        indexAction: function(){
+            var model = D("Post");
             var self = this;
-            var model = D('Options');
-            return model.getBlogOptions().then(function(data){
-                self.assign("options", data || {});
-            })
-        },
-        /**
-         * 获取友情连接
-         * @return {[type]} [description]
-         */
-        getLinks: function(){
-            var model = D("Links");
-            var self = this;
-            return model.getLinks().then(function(data){
-                self.assign("links", data || []);
-            })
-        },
-        getPosts: function(){
-            var model = D("Posts");
-            var self = this;
-            return model.getPostsList().then(function(data){
-                self.assign("posts", data || []);
-            })
-        },
-        /**
-         * 最近文章
-         * @return {[type]} [description]
-         */
-        getRecentPosts: function(){
-            var model = D("Posts");
-            var self = this;
-            return model.getRecentPosts().then(function(data){
-                self.assign("recentPosts", data || []);
-            })
-        },
-        //获取分类
-        getCates: function(){
-            var model = D('TermTaxonomy');
-            var self = this;
-            return model.getCateList().then(function(data){
-                
-                self.assign("cates", data || []);
+            model.page(this.get("page")).limit(20)
+            .field("id,datetime,title,alias_title")
+            .order("datetime DESC").where({
+                type: "post",
+                status: "publish"
+            }).select().then(function(data){
+                data = (data || []).map(function(item){
+                    item.datetime = get_date(item.datetime);
+                    return item;
+                })
+                self.assign("list", data);
+                self.display();
             });
         },
-        indexAction: function(){
-            this.end("index");
-        },
-        /**
-         * 分类
-         * @param  {[type]} cate [description]
-         * @param  {[type]} page [description]
-         * @return {[type]}      [description]
-         */
-        cateAction: function(cate, page){
-            this.end(cate + ":" + page);
+        convertAction: function(){
+            var self = this;
+            // D('Post').contentToMarkdown().then(function(){
+            //     self.end("finish");
+            // })
+            D('Post').markdownToContent().then(function(){
+                self.end("finish");
+            })
         },
         /**
          * 详细页面
-         * @return {[type]} [description]
+         * @param  {[type]} alias_title [description]
+         * @return {[type]}             [description]
          */
-        detailAction: function(){
-
+        detailAction: function(alias_title){
+            if (!alias_title) {
+                return this.redirect("/");
+            };
+            var model = D('Post');
+            var self = this;
+            model.where({
+                alias_title: alias_title
+            }).field("id,title,content,datetime,type").find().then(function(data){
+                if (is_empty(data)) {
+                    return self.display("index:404");
+                };
+                data.datetime = get_date(data.datetime);
+                self.assign("detail", data);
+                self.display();
+            })
         },
         /**
-         * 标签
-         * @param  {[type]} tag  [description]
-         * @param  {[type]} page [description]
-         * @return {[type]}      [description]
+         * 存档
+         * @return {[type]} [description]
          */
-        tagAction: function(tag, page){
-
+        archiveAction: function(){
+            this.end("");
         },
         __call: function(){
+            console.log(arguments);
             this.redirect("/");
         }
     }

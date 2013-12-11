@@ -1,39 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=980" />
-	<title><%= options.blogname %></title>
-	<meta name="keywords" content="<%= options.blogname %>" />
-	<meta name="description" content="<%= options.blogdescription %>" />
-	<link rel="stylesheet" type="text/css" media="all" href="/resource/css/style.css" />
-	<link rel="stylesheet" href="/resource/css/syntaxhighlighter.css">
-	<link rel="pingback" href="" />
+    <meta charset="utf-8" />
+    <title>welefen的随笔</title>
+    <meta name="author" content="welefen" />
+    <link rel="icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/resource/css/front.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resource/module/highlight/styles/solarized_dark.css">
 </head>
 <body>
-<header>
-	<div class="g98 clearfix">
-		<h1 class="logo l">
-		<a href="/" title="<%= options.blogname %> - <%= options.blogdescription %>">
-			<img title="<%= options.blogname %>" src="/resource/img/logo.png"  alt="<%= options.blogname %>" />
-		</a>
-		</h1>
-		<nav class="l">
-			<ul>
-			<li class="first <?php if ( is_home() ) { echo 'current_page_item'; }?>">
-			<a href="/">首页</a>
-			</li></ul>
-			<!---->
-		</nav>
-
-		<div class="search r">
-			<form id="searchform" method="get" action="/">
-			<input type="search" class="si" placeholder="请输入关键字搜索" size="35" maxlength="50" name="s" id="s" x-webkit-speech x-webkit-grammar="builtin:translate" />
-			</form>
-		</div>
-		<a href="/feed" title="rss" class="rss r">
-			<img src="/resource/img/rss.png">
-		</a>
-	</div>
-</header>
-<div class="wrapper g98 clearfix" >
+    <header class="header">
+        <div class="navigation container_12">
+            <section class="grid_2 logo">
+                <a href="/">welefen的随笔</a>
+            </section>
+            <div class="grid_8">
+                <nav role="navigation">
+                    <ul role="main-navigation">
+                        <li>
+                            <a href="/">文章</a>
+                        </li>
+                        <li>
+                            <a href="/project.html">开源项目</a>
+                        </li>
+                        <li>
+                            <a href="/about.html">关于</a>
+                        </li>
+                        <li>
+                            <a href="/links.html">友情链接</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="search"></div>
+            </div>
+            <div class="social grid_2">
+                <span>
+                    <a href="https://twitter.com/welefen"><i class="fa fa-twitter"></i></a>
+                    <a href="https://github.com/welefen"><i class="fa fa-github"></i></a>
+                    <a href="/feed"><i class="fa fa-rss"></i></a>
+                </span>
+            </div>
+        </div>
+    </header>
+    <div class="banner"></div>

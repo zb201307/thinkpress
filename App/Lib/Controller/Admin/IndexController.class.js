@@ -4,19 +4,10 @@ module.exports = inherits("Admin/BaseController", function(){
 			this.super("init", http);
 		},
 		loginAction: function(){
-			this.redirect("http://www.baidu.com")
-			//this.display();
+			this.display();
 		},
 		indexAction: function(){
-			var self = this;
-			var model = D("Post");
-			model._adminPostList(this.http).then(function(data){
-				self.assign("post", data || []);
-				self.display();
-			});
-		},
-		testAction: function(){
-			this.end();
+			this.redirect("/admin/post/list")
 		}
 	}
 })

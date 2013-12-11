@@ -1,4 +1,4 @@
-var markdown = require("markdown").markdown;
+var marked = require("marked");
 /**
  * 文章模型
  * @return {[type]} [description]
@@ -12,7 +12,9 @@ var model = module.exports = Model(function(){
          */
         _adminPostList: function(http){
             var order = http.get.order || "id DESC";
-            return this.field("id,title,status,datetime").page(http.get.page).order(order).select().then(function(data){
+            return this.field("id,title,status,datetime").where({
+                type: "post"
+            }).page(http.get.page).order(order).select().then(function(data){
                 if (is_empty(data)) {
                     return [];
                 };
@@ -38,9 +40,55 @@ var model = module.exports = Model(function(){
                         return item;
                     })
                 });
-                return when.all([postTagPromise]).then(function(){
+                return when.all([
+                    postTagPromise,
+                    postCatePromse
+                ]).then(function(){
                     return data;
                 })
+            })
+        },
+        /**
+         * 将文章内容转化为markdown格式
+         * @return {[type]} [description]
+         */
+        contentToMarkdown: function(){
+            var self = this;
+            var toMarkdown = require('to-markdown').toMarkdown;
+            return this.select().then(function(data){
+                var promises = [];
+                (data || []).forEach(function(item){
+                    if (is_empty(item.markdown_content)) {
+                        var markdown_content = toMarkdown(item.content);
+                        var promise = self.update({
+                            id: item.id,
+                            markdown_content: markdown_content
+                        });
+                        promises.push(promise);
+                    };
+                });
+                return when.all(promises);
+            })
+        },
+        /**
+         * 将markdown转化为内容
+         * @return {[type]} [description]
+         */
+        markdownToContent: function(){
+            var self = this;
+            return this.select().then(function(data){
+                var promises = [];
+                (data || []).forEach(function(item){
+                    if (!is_empty(item.markdown_content)) {
+                        var content = marked(item.markdown_content);
+                        var promise = self.update({
+                            id: item.id,
+                            content: content
+                        });
+                        promises.push(promise);
+                    };
+                });
+                return when.all(promises);
             })
         },
         /**
@@ -83,9 +131,12 @@ var model = module.exports = Model(function(){
             //更新或者添加内容
             var data = http.post;
             //获取解析后的内容
-            var content = markdown.toHTML(data.markdown_content);
+            var content = marked(data.markdown_content);
             data.content = content;
-            data.datetime = get_dateTime();
+            if (!data.id) {
+                data.datetime = get_dateTime();
+            };
+            data.edit_datatime = get_dateTime();
             //文章的id
             var postId = data.id;
             var promise = null;

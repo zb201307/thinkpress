@@ -75,15 +75,44 @@ $(function(){
 		'.postTagList a.btn sup': function(){
 			$(this).parents("a.btn").remove();
 		},
-		'a.glyphicon-remove': function(event){
+		'a.btn-post-remove': function(event){
 			event.preventDefault();
 			var id = $(this).parents("tr").data("id");
 			if (confirm("确认删除么？")) {
-				$.post("/admin/post/item", {
+				$.postData("/admin/post/item", {
 					method:  "delete",
 					id: id
+				}).then(function(){
+					location.reload();
 				})
 			};
-		}
+		},
+		'.btn-page-save': function(event){
+			event.preventDefault();
+			var title = $('#field_title').val();
+			var alias_title = $('#field_alias_title').val();
+			var content = editor.getValue();
+			var data = {
+				id: $('#field_id').val() | 0,
+				title: title,
+				alias_title: alias_title,
+				markdown_content: content
+			};
+			$.postData("/admin/page/item", data).then(function(){
+				location.href = '/admin/page/list';
+			})
+		},
+		'a.btn-page-remove': function(event){
+			event.preventDefault();
+			var id = $(this).parents("tr").data("id");
+			if (confirm("确认删除么？")) {
+				$.postData("/admin/page/item", {
+					method:  "delete",
+					id: id
+				}).then(function(){
+					location.reload();
+				})
+			};
+		},
 	})
 })

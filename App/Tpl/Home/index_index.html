@@ -1,1 +1,26 @@
-welefen
+<% include inc/header.html %>
+<section class="main container_12">
+    <div class="area-header"></div>
+    <div class="block-contents">
+        <div class="bg-contents"></div>
+        <h1 class="title">文章列表</h1>
+        <div class="contents">
+            <div class="index">
+                <ul class="article-list">
+                    <%list.forEach(function(item){ %>
+                    <li>
+                        <a href="/<%-encodeURIComponent(item.alias_title)%>.html"><%-item.title%></a>
+                        <time><%-item.datetime%></time>
+                    </li>
+                    <%})%>
+                </ul>
+            </div>
+            <div class="archive-link">
+                <i class="fa fa-share"></i>
+                <a href="/archive">Archives</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</section>
+<% include inc/footer.html %>
