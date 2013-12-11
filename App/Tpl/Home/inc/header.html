@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8" />
-    <title>welefen的随笔</title>
+    <title><%if(title){%><%-title%> - <%}%>welefen的随笔</title>
     <meta name="author" content="welefen" />
     <link rel="icon" href="/favicon.png" />
     <link rel="stylesheet" href="/resource/css/front.css"/>
@@ -19,16 +19,16 @@
                 <nav role="navigation">
                     <ul role="main-navigation">
                         <li>
-                            <a href="/">文章</a>
+                            <a <%if(navType == 'post'){%>class="current"<%}%> href="/">文章</a>
                         </li>
                         <li>
-                            <a href="/project.html">开源项目</a>
+                            <a <%if(navType == 'project'){%>class="current"<%}%> href="/project.html">开源项目</a>
                         </li>
                         <li>
-                            <a href="/about.html">关于</a>
+                            <a <%if(navType == 'about'){%>class="current"<%}%> href="/about.html">关于</a>
                         </li>
                         <li>
-                            <a href="/links.html">友情链接</a>
+                            <a <%if(navType == 'links'){%>class="current"<%}%> href="/links.html">友情链接</a>
                         </li>
                     </ul>
                 </nav>

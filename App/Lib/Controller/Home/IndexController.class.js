@@ -7,7 +7,8 @@ module.exports = Controller(function(){
         init: function(http){
             this.super("init", http);
             //设置选项
-            this.assign("options", {});
+            this.assign("title", "");
+            this.assign("navType", "post");
         },
         indexAction: function(){
             var model = D("Post");
@@ -46,6 +47,9 @@ module.exports = Controller(function(){
             };
             var model = D('Post');
             var self = this;
+            if (["about", "links", 'project'].indexOf(alias_title) > -1) {
+                self.assign("navType", alias_title);
+            }
             model.where({
                 alias_title: alias_title
             }).field("id,title,content,datetime,type").find().then(function(data){
@@ -54,6 +58,7 @@ module.exports = Controller(function(){
                 };
                 data.datetime = get_date(data.datetime);
                 self.assign("detail", data);
+                self.assign("title", data.title);
                 self.display();
             })
         },
