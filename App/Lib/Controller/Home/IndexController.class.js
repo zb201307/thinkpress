@@ -57,7 +57,24 @@ module.exports = Controller(function(){
          * @return {[type]} [description]
          */
         archiveAction: function(){
-            this.end("");
+            var self = this;
+            D("Post").field("title,alias_title,datetime")
+            .order("datetime DESC").where({
+                type: "post",
+                status: "publish"
+            }).select().then(function(data){
+                var result = {};
+                (data || []).forEach(function(item){
+                    var year = Date.format(item.datetime, "yyyy") + " ";
+                    if (!(year in result)) {
+                        result[year] = [];
+                    };
+                    item.datetime = get_date(item.datetime);
+                    result[year].push(item);
+                });
+                self.assign("list", result);
+                self.display();
+            })
         },
         __call: function(){
             console.log(arguments);

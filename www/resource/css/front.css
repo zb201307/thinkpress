@@ -966,25 +966,29 @@ header.title time {
 	line-height: 18px;
 	white-space: pre;
 }
-section.main .block-contents .contents header.archives-title h1 {
+.archives-title h1 {
 	font-size: 2.2em;
 	font-weight: bold;
 	margin-bottom: 5px;
 	padding: 10px;
 }
-section.main .block-contents .contents .posts ul.archive-list h2 {
+.archive-list h2 {
 	margin: 15px 0;
 	font-weight: bold;
 	font-size: 1.8em;
 	padding-left: 10px;
+	line-height: 29px;
 }
-section.main .block-contents .contents .posts ul.archive-list li {
+.archive-list h2 span{
+	color: #ddd;
+}
+.archive-list li {
 	padding: 10px;
 }
-section.main .block-contents .contents .posts ul.archive-list li time {
+.archive-list li time {
 	float: right;
 }
-section.main .block-contents .contents .posts ul.archive-list li+li {
+.archive-list li+li {
 	border-top: 1px solid #ededed;
 }
 .index ul.article-list li {
