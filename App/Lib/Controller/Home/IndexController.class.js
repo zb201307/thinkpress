@@ -94,6 +94,23 @@ module.exports = Controller(function(){
                 self.display();
             })
         },
+        /**
+         * feed
+         * @return {[type]} [description]
+         */
+        feedAction: function(){
+            var self = this;
+            self.header("Content-Type", "text/xml");
+
+            D("Post").field("title,alias_title,datetime,content")
+            .order("datetime DESC").where({
+                type: "post",
+                status: "publish"
+            }).limit(20).select().then(function(data){
+                self.assign("list", data || []);
+                self.display();
+            });
+        },
         __call: function(){
             console.log(arguments);
             this.redirect("/");

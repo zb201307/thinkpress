@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+<channel>
+	<title>welefen的随笔</title>
+	<atom:link href="http://www.welefen.com/feed" rel="self" type="application/rss+xml" />
+	<link>http://www.welefen.com</link>
+	<description>welefen的前端技术博客，关注前后端等各方面的技术</description>
+	<lastBuildDate><%-new Date()%></lastBuildDate>
+	<language>zh-CN</language>
+		<sy:updatePeriod>hourly</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+	<%list.forEach(function(item){%>
+	<item>
+		<title><%-item.title%></title>
+		<link>http://<%-http.hostname%>/<%-item.alias_title%>.html</link>
+		<comments>http://<%-http.hostname%>/<%-item.alias_title%>.html#comments</comments>
+		<pubDate><%-item.datetime%></pubDate>
+		<dc:creator><![CDATA[welefen]]></dc:creator>
+		<content:encoded><![CDATA[<%-item.content%>]]></content:encoded>
+		</item>
+	<%})%>
+	</channel>
+</rss>

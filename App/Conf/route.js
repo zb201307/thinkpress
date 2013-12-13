@@ -13,6 +13,7 @@ module.exports = {
 	// "/^tag\/([^/]+)\/(feed|rdf|rss|rss2|atom)\/?$/": "",
 	// "/^tag\/([^/]+)\/page\/?([0-9]{1,})\/?$/": "index/tag?tag=:1&page=:2",
 	// "/^tag\/([^/]+)\/?$/": "index/tag?tag=:1&page=1",
+	"/^feed/": "index/feed",
 	//登录页面
 	"/^login\/?$/": "admin/index/login",
 	"/^logout\/?$/": "admin/index/logout",
