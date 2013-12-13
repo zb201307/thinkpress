@@ -3,6 +3,7 @@
  * @return {[type]} [description]
  */
 E("return_home", function(controller, group, http){
+	console.log(http.pathname + " not found");
 	http.redirect("/");
 })
 /**

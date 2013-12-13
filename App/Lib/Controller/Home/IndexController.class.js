@@ -9,7 +9,12 @@ module.exports = Controller(function(){
             //设置选项
             this.assign("title", "");
             this.assign("navType", "post");
+            this.assign("static_host", C("static_host") || "");
         },
+        /**
+         * 文章列表
+         * @return {[type]} [description]
+         */
         indexAction: function(){
             var model = D("Post");
             var self = this;
@@ -29,12 +34,13 @@ module.exports = Controller(function(){
         },
         convertAction: function(){
             var self = this;
+            this.end();
             // D('Post').contentToMarkdown().then(function(){
             //     self.end("finish");
             // })
-            D('Post').markdownToContent().then(function(){
-                self.end("finish");
-            })
+            // D('Post').markdownToContent().then(function(){
+            //     self.end("finish");
+            // })
         },
         /**
          * 详细页面
@@ -54,6 +60,7 @@ module.exports = Controller(function(){
                 alias_title: alias_title
             }).field("id,title,content,datetime,type").find().then(function(data){
                 if (is_empty(data)) {
+                    console.log(alias_title + " not found");
                     return self.display("index:404");
                 };
                 data.datetime = get_date(data.datetime);
