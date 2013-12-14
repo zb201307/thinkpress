@@ -17,9 +17,10 @@ module.exports = {
 	//登录页面
 	"/^login\/?$/": "admin/index/login",
 	"/^logout\/?$/": "admin/index/logout",
-	//"/^page\/(\d+)/": "index/index?page=:1",
+	"/^page\/([0-9]+)/": "index/index?page=:1",
 	"/^admin(.*)$/": "admin:1",
 	"/^index\/(.+)/": "index/:1",
 	"/^archive/": "index/archive",
+	"/^(.*)\.html\/comment-page/": "index/detail?alias_title=:1",
 	"/^(.+)$/": "index/detail/?alias_title=:1"
 }

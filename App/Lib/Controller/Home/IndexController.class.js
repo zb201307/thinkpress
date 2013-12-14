@@ -24,6 +24,9 @@ module.exports = Controller(function(){
                 type: "post",
                 status: "publish"
             }).select().then(function(data){
+                if (data === false) {
+                    console.log(model.getDbError());
+                };
                 data = (data || []).map(function(item){
                     item.datetime = get_date(item.datetime);
                     return item;
