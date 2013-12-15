@@ -37,8 +37,9 @@ module.exports = Controller(function(){
         },
         convertAction: function(){
             var self = this;
-            this.http.sendTime("Exec-Time")
-            this.end();
+            this.header("Content-Type", "text/plain");
+            this.redirect("/")
+            //this.end();
             // D('Post').contentToMarkdown().then(function(){
             //     self.end("finish");
             // })

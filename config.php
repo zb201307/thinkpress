@@ -29,7 +29,7 @@ return array (
 	'MOD_STRING_REPLACE' => false,  //代码替换功能
     'COMPRESS_JS_USE_JINGCHUANG' => false,
     'MODULE_FILE_EXT' => 'woff,ttf,svg',
-	'MOD_STATIC_VERSION' => 1  //静态文件版本号，1或者true为query,2为新文件模式
+	'MOD_STATIC_VERSION' => 2  //静态文件版本号，1或者true为query,2为新文件模式
 );
 
 
