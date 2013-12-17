@@ -21,5 +21,5 @@ module.exports = {
 	"/^index\/(.+)/": "index/:1",
 	"/^archive/": "index/archive",
 	"/^(.*)\.html\/comment-page/": "index/detail?alias_title=:1",
-	"/^(?!admin)(.+)$/": "index/detail/?alias_title=:1"
+	"/^(?!admin)(.+)$/": "index/detail?alias_title=:1"
 }
