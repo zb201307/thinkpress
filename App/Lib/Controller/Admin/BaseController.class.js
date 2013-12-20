@@ -4,14 +4,13 @@
  */
 module.exports = Controller(function(){
 	return {
-		promise: null,
 		init: function(http){
 			this.super("init", http);
-			if (this.http.action != "login") {
-				this.checkLogin();
-			};
 			if (this.navType) {
 				this.assign("navType", this.navType);
+			};
+			if (this.http.action != "login") {
+				return this.checkLogin();
 			};
 		},
 		/**
@@ -28,7 +27,7 @@ module.exports = Controller(function(){
 				};
 				deferred.resolve();
 			})
-			this.promise = deferred.promise;
+			return deferred.promise;
 		}
 	}
 })

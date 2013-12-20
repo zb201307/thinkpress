@@ -37,8 +37,9 @@ module.exports = Controller(function(){
         },
         convertAction: function(){
             var self = this;
-            this.header("Content-Type", "text/plain");
-            this.redirect("/")
+            this.cookie("test", "value");
+            this.cookie("test1", "value1");
+            this.end()
             //this.end();
             // D('Post').contentToMarkdown().then(function(){
             //     self.end("finish");

@@ -26,16 +26,12 @@ module.exports = inherits("Admin/BaseController", function(){
 		 */
 		logoutAction: function(){
 			var self = this;
-			this.promise.then(function(){
-				self.session("login", "");
-				self.redirect("/login");
-			})
+			self.session("login", "");
+			self.redirect("/login");
 		},
 		indexAction: function(){
 			var self = this;
-			this.promise.then(function(){
-				self.redirect("/admin/post/list")
-			})
+			self.redirect("/admin/post/list")
 		}
 	}
 })
