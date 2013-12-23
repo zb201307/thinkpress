@@ -59,7 +59,9 @@ module.exports = Controller(function(){
             };
             var model = D('Post');
             var self = this;
+            var specialPage = false;
             if (["about", "links", 'project'].indexOf(alias_title) > -1) {
+                specialPage = true;
                 self.assign("navType", alias_title);
             }
             model.where({
@@ -72,7 +74,7 @@ module.exports = Controller(function(){
                 data.datetime = get_date(data.datetime);
                 self.assign("detail", data);
                 self.assign("title", data.title);
-                self.assign("url", alias_title);
+                self.assign("url", specialPage ? "" : alias_title);
                 self.display();
             })
         },

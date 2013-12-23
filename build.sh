@@ -27,4 +27,9 @@ mkdir output/App/Lib;
 cp -r App/Common/* output/App/Common/;
 cp -r App/Conf/* output/App/Conf/;
 cp -r App/Lib/* output/App/Lib/;
+cd output;
+tar zcvf ../output.tar.gz *;
+cd ..
+scp -r output.tar.gz welefen@www.kitgram.com:/tmp/;
+ssh welefen@www.kitgram.com "tar zxvf /tmp/output.tar.gz -C /home/welefen/www/www.welefen.com/;";
 #scp -r output/* welefen@www.kitgram.com:/home/welefen/www/www.welefen.com/;

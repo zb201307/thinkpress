@@ -19,7 +19,7 @@ return array (
 	'MOD_CSS_COMBINE' => true,  //CSS文件是否启用合并
 	'MOD_HTML_COMPRESS' => true,  //HTML文件是否启用压缩
 	'MOD_JS_COMPRESS' => true,  //JS文件是否启用压缩
-	'MOD_CSS_COMPRESS' => false,  //CSS文件是否启用压缩
+	'MOD_CSS_COMPRESS' => true,  //CSS文件是否启用压缩
 	'MOD_OPTI_IMG' => false,  //优化图片
 	'MOD_XSS_AUTO_FIXED' => false,  //模版型XSS自动修复
 	'MOD_IMG_DATAURI' => true,  //CSS中的图片地址转换为dataURI

@@ -13,8 +13,10 @@
                 </header>
                 <%}%>
                 <div class="article"><%-detail.content%>
+                <%if(url){%>
                 <p>本文链接：<a href="http://<%-http.hostname%>/<%-url%>.html">http://<%-http.hostname%>/<%-url%>.html</a></p>
                 </div>
+                <%}%>
             </article>
             <a name="comments"></a>
             <div class="ds-thread"></div>
