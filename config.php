@@ -19,7 +19,7 @@ return array (
 	'MOD_CSS_COMBINE' => true,  //CSS文件是否启用合并
 	'MOD_HTML_COMPRESS' => true,  //HTML文件是否启用压缩
 	'MOD_JS_COMPRESS' => true,  //JS文件是否启用压缩
-	'MOD_CSS_COMPRESS' => true,  //CSS文件是否启用压缩
+	'MOD_CSS_COMPRESS' => false,  //CSS文件是否启用压缩
 	'MOD_OPTI_IMG' => false,  //优化图片
 	'MOD_XSS_AUTO_FIXED' => false,  //模版型XSS自动修复
 	'MOD_IMG_DATAURI' => true,  //CSS中的图片地址转换为dataURI
@@ -28,7 +28,6 @@ return array (
 	'MOD_EXTERNAL_TO_INLINE' => false,  //外链资源编译为内联资源
 	'MOD_STRING_REPLACE' => false,  //代码替换功能
     'COMPRESS_JS_USE_JINGCHUANG' => false,
-    'MODULE_FILE_EXT' => 'woff,ttf,svg',
 	'MOD_STATIC_VERSION' => 2  //静态文件版本号，1或者true为query,2为新文件模式
 );
 

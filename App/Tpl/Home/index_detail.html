@@ -12,7 +12,9 @@
                     <time><%-detail.datetime%></time>
                 </header>
                 <%}%>
-                <div class="article"><%-detail.content%></div>
+                <div class="article"><%-detail.content%>
+                <p>本文链接：<a href="http://<%-http.hostname%>/<%-url%>.html">http://<%-http.hostname%>/<%-url%>.html</a></p>
+                </div>
             </article>
             <a name="comments"></a>
             <div class="ds-thread"></div>

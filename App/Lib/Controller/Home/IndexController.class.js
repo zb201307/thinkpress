@@ -72,6 +72,7 @@ module.exports = Controller(function(){
                 data.datetime = get_date(data.datetime);
                 self.assign("detail", data);
                 self.assign("title", data.title);
+                self.assign("url", alias_title);
                 self.display();
             })
         },

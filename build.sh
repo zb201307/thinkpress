@@ -27,4 +27,4 @@ mkdir output/App/Lib;
 cp -r App/Common/* output/App/Common/;
 cp -r App/Conf/* output/App/Conf/;
 cp -r App/Lib/* output/App/Lib/;
-scp -r output/* welefen@www.kitgram.com:/home/welefen/www/www.welefen.com/;
+#scp -r output/* welefen@www.kitgram.com:/home/welefen/www/www.welefen.com/;
