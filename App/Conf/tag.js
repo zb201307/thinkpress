@@ -1,6 +1,4 @@
-//
-//
-
+//行为
 module.exports = {
-	action_begin: ["FilterPars"]
+	action_init: ["FilterPars"]
 }
