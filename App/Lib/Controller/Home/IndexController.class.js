@@ -16,8 +16,6 @@ module.exports = Controller(function(){
          * @return {[type]} [description]
          */
         indexAction: function(){
-            this.http.end();
-            return true;
             var model = D("Post");
             var self = this;
             model.page(this.get("page")).limit(20)
@@ -40,7 +38,11 @@ module.exports = Controller(function(){
         convertAction: function(){
             var self = this;
             this.http.sendTime("Exec-Time");
-            this.end()
+            var ip = this.http.req.connection.remoteAddress 
+                        || this.http.req.socket.remoteAddress 
+                        || this.http.req.connection.socket.remoteAddress;
+            this.end(ip+"");
+            //console.log("wwww")
             //this.end();
             // D('Post').contentToMarkdown().then(function(){
             //     self.end("finish");

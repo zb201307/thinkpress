@@ -1,32 +1,32 @@
 {
   "name": "thinkpress",
-  "description": "a nodejs block",
-  "version": "0.1.0",
+  "description": "a nodejs blog",
+  "version": "0.1.2",
   "author": {
-    "name": "welefen",
-    "email": "welefen@gmail.com"
+      "name": "welefen",
+      "email": "welefen@gmail.com"
   },
   "contributors": [{
       "name": "welefen",
       "email": "welefen@gmail.com"
-    }],
+  }],
   "dependencies": {
-    "thinkjs": "0.1.27",
-    "marked": "0.2.109"
+      "thinkjs": "0.1.27",
+      "marked": "0.2.109"
   },
   "keywords": [
-    "thinkpress",
-    "blog"
+      "thinkpress",
+      "blog"
   ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/welefen/thinkpress"
+      "type": "git",
+      "url": "https://github.com/welefen/thinkpress"
   },
   "engines": {
-    "node": "*"
+      "node": "*"
   },
-"readmeFilename": "README.md",
+  "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/welefen/thinkpress/issues"
+      "url": "https://github.com/welefen/thinkpress/issues"
   }
 }

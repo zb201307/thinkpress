@@ -20,7 +20,7 @@ if [ -f ${path}"/stc.error.log" ]; then
     rm -rf ${path}"/stc.error.log";
     exit 1;
 fi
-#cp -r www/index.js output/www/;
+cp -r www/index.js output/www/;
 mkdir output/App/Common;
 mkdir output/App/Conf;
 mkdir output/App/Lib;
@@ -32,4 +32,3 @@ tar zcvf ../output.tar.gz *;
 cd ..
 scp -r output.tar.gz welefen@www.kitgram.com:/tmp/;
 ssh welefen@www.kitgram.com "tar zxvf /tmp/output.tar.gz -C /home/welefen/www/www.welefen.com/;";
-#scp -r output/* welefen@www.kitgram.com:/home/welefen/www/www.welefen.com/;
