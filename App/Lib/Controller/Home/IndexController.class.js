@@ -38,9 +38,7 @@ module.exports = Controller(function(){
         convertAction: function(){
             var self = this;
             this.http.sendTime("Exec-Time");
-            var ip = this.http.req.connection.remoteAddress 
-                        || this.http.req.socket.remoteAddress 
-                        || this.http.req.connection.socket.remoteAddress;
+            var ip = this.ip();
             this.end(ip+"");
             //console.log("wwww")
             //this.end();

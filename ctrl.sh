@@ -11,7 +11,7 @@ usage() {
 }
 
 get_pid() {
-  if [ -f ./run/app.pid ]; then
+  if [ -f './App/Runtime/Data/app.pid' ]; then
     echo `cat ./App/Runtime/Data/app.pid`
   fi
 }
