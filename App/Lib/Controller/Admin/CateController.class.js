@@ -1,4 +1,4 @@
-module.exports = inherits("Admin/BaseController", function(){
+module.exports = Controller("Admin/BaseController", function(){
 	return {
 		navType: "cate",
 		listAction: function(){

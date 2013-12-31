@@ -2,7 +2,7 @@
  * 文章管理
  * @return {[type]} [description]
  */
-module.exports = inherits("Admin/BaseController", function(){
+module.exports = Controller("Admin/BaseController", function(){
 	return {
 		navType: "post",
 		/**

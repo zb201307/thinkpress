@@ -35,6 +35,11 @@ module.exports = Controller(function(){
                 self.display();
             });
         },
+        testAction: function(){
+            var spider = think_require("TestSpider");
+            spider();
+            this.end();
+        },
         convertAction: function(){
             var self = this;
             this.http.sendTime("Exec-Time");
