@@ -5,7 +5,7 @@
 module.exports = Controller(function(){
 	return {
 		init: function(http){
-			this.super("init", http);
+			this.super_("init", http);
 			if (this.navType) {
 				this.assign("navType", this.navType);
 			};

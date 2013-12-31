@@ -5,7 +5,7 @@
 module.exports = Controller(function(){
     return {
         init: function(http){
-            this.super("init", http);
+            this.super_("init", http);
             //设置选项
             this.assign("title", "");
             this.assign("navType", "post");
