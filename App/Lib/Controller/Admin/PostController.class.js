@@ -18,7 +18,7 @@ module.exports = Controller("Admin/BaseController", function(){
 			var countPromise = model.count("id").then(function(count){
 				self.assign("count", count || 0);
 			});
-			when.all([
+			return when.all([
 				listPromise,
 				countPromise
 			]).then(function(){
@@ -69,11 +69,11 @@ module.exports = Controller("Admin/BaseController", function(){
 				});
 				allPromise.push(catePromise);
 				//
-				when.all(allPromise).then(function(){
+				return when.all(allPromise).then(function(){
 					self.display();
 				})
 			}else if (self.isPost()) {
-				model._adminItemPost(self.http).then(function(rows){
+				return model._adminItemPost(self.http).then(function(rows){
 					self.json({
 						errno: rows ? 0 : 1
 					});

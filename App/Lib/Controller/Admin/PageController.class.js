@@ -7,7 +7,7 @@ module.exports = Controller("Admin/BaseController", function(){
 		 */
 		listAction: function(){
 			var self = this;
-			D("Post").page(self.get("post")).where({
+			return D("Post").page(self.get("post")).where({
 				type: "page"
 			}).order('datetime DESC').select().then(function(data){
 				data = (data || []).map(function(item){
@@ -28,7 +28,7 @@ module.exports = Controller("Admin/BaseController", function(){
 				var id = self.get("id");
 				self.assign("item", {});
 				if (id) {
-					D("post").where({
+					return D("post").where({
 						id: id,
 						type: "page"
 					}).find().then(function(data){
@@ -44,7 +44,7 @@ module.exports = Controller("Admin/BaseController", function(){
 				if (data.method === 'delete') {
 					var id = data.id;
 					if (id) {
-						D("Post").where({
+						return D("Post").where({
 							type: "page",
 							id: id
 						}).delete().then(function(){
@@ -65,7 +65,7 @@ module.exports = Controller("Admin/BaseController", function(){
 						data.datetime = get_dateTime();
 						promise = D('Post').add(data);
 					}
-					promise.then(function(rows){
+					return promise.then(function(rows){
 						self.end(rows);
 					})
 				}

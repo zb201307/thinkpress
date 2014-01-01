@@ -18,22 +18,20 @@ module.exports = Controller(function(){
         indexAction: function(){
             var model = D("Post");
             var self = this;
-            model.page(this.get("page")).limit(20)
+            var promise = model.page(this.get("page")).limit(20)
             .field("id,datetime,title,alias_title")
             .order("datetime DESC").where({
                 type: "post",
                 status: "publish"
             }).select().then(function(data){
-                if (data === false) {
-                    console.log(model.getDbError());
-                };
-                data = (data || []).map(function(item){
+                data = data.map(function(item){
                     item.datetime = get_date(item.datetime);
                     return item;
                 })
                 self.assign("list", data);
                 self.display();
             });
+            return promise;
         },
         testAction: function(){
             var spider = think_require("TestSpider");
@@ -70,7 +68,7 @@ module.exports = Controller(function(){
                 specialPage = true;
                 self.assign("navType", alias_title);
             }
-            model.where({
+            var promise = model.where({
                 alias_title: alias_title
             }).field("id,title,content,datetime,type").find().then(function(data){
                 if (is_empty(data)) {
@@ -82,7 +80,8 @@ module.exports = Controller(function(){
                 self.assign("title", data.title);
                 self.assign("url", specialPage ? "" : alias_title);
                 self.display();
-            })
+            });
+            return promise;
         },
         /**
          * 存档
@@ -90,7 +89,8 @@ module.exports = Controller(function(){
          */
         archiveAction: function(){
             var self = this;
-            D("Post").field("title,alias_title,datetime")
+            var model = D("Post");
+            var promise = model.field("title,alias_title,datetime")
             .order("datetime DESC").where({
                 type: "post",
                 status: "publish"
@@ -106,7 +106,8 @@ module.exports = Controller(function(){
                 });
                 self.assign("list", result);
                 self.display();
-            })
+            });
+            return promise;
         },
         /**
          * feed
@@ -116,7 +117,8 @@ module.exports = Controller(function(){
             var self = this;
             self.header("Content-Type", "text/xml");
 
-            D("Post").field("title,alias_title,datetime,content")
+            var model = D("Post");
+            var promise = model.field("title,alias_title,datetime,content")
             .order("datetime DESC").where({
                 type: "post",
                 status: "publish"
@@ -124,9 +126,9 @@ module.exports = Controller(function(){
                 self.assign("list", data || []);
                 self.display();
             });
+            return promise;
         },
         __call: function(){
-            console.log(arguments);
             this.redirect("/");
         }
     }
