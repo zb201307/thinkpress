@@ -20,7 +20,7 @@ if [ -f ${path}"/stc.error.log" ]; then
     rm -rf ${path}"/stc.error.log";
     exit 1;
 fi
-cp -r www/index.js output/www/;
+#cp -r www/index.js output/www/;
 mkdir output/App/Common;
 mkdir output/App/Conf;
 mkdir output/App/Lib;
