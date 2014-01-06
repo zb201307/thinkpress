@@ -125,7 +125,7 @@ var model = module.exports = Model(function(){
                 }else if(id){
                     return this._adminDeletePost(id);
                 }else{
-                    return get_promise(false);
+                    return get_promise();
                 }
             };
             //更新或者添加内容
@@ -150,7 +150,7 @@ var model = module.exports = Model(function(){
             }
             return promise.then(function(){
                 if (!postId) {
-                    return get_promise(false);
+                    return get_promise();
                 };
                 var tags = (data.tag || "").split(",");
                 var cate_ids = (data.cate_ids || "").split(",");

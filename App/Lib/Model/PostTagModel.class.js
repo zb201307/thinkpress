@@ -39,18 +39,15 @@ var model = module.exports = Model(function(){
 			var where = is_array(post_id) ? {post_id: ["IN", post_id]} : {post_id: post_id};
 			var tagModel = D('Tag');
 			return this.where(where).select().then(function(data){
-				if (data === false) {
-					return false;
-				};
 				var postTagList = data;
 				tag_ids = data.map(function(item){
 					return item.tag_id;
 				});
+				if (tag_ids.length === 0) {
+					return [];
+				};
 				//获取标签id对应的名称
 				return tagModel.getNames(tag_ids).then(function(data){
-					if (data === false) {
-						return false;
-					};
 					var tags = {};
 					data.forEach(function(item){
 						tags[item.id] = item.name;
