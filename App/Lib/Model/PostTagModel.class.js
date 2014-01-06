@@ -7,7 +7,7 @@ var model = module.exports = Model(function(){
 		 */
 		updatePostTag: function(post_id, tags){
 			if (!is_array(tags)) {
-				return get_promise(false);
+				return get_promise();
 			};
 			var self = this;
 			//删除已有的tag_id
@@ -15,7 +15,7 @@ var model = module.exports = Model(function(){
 				post_id: post_id
 			}).delete().then(function(){
 				if (tags.length == 0) {
-					return get_promise(true);
+					return get_promise();
 				};
 				return D('Tag').getIds(tags).then(function(data){
 					var tag_ids = Object.values(data);

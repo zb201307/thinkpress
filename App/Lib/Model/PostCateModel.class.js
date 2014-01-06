@@ -58,14 +58,14 @@ var model = module.exports = Model(function(){
 		 */
 		updatePostCate: function(post_id, cate_ids){
 			if (!is_array(cate_ids)) {
-				return get_promise(false);
+				return get_promise();
 			};
 			var self = this;
 			return this.where({
 				post_id: post_id
 			}).delete().then(function(){
 				if (cate_ids.length == 0 ) {
-					return get_promise(true);
+					return get_promise();
 				};
 				var data = cate_ids.map(function(id){
 					return {
