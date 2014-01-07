@@ -40,7 +40,7 @@ var model = module.exports = Model(function(){
                         return item;
                     })
                 });
-                return when.all([
+                return Promise.all([
                     postTagPromise,
                     postCatePromse
                 ]).then(function(){
@@ -67,7 +67,7 @@ var model = module.exports = Model(function(){
                         promises.push(promise);
                     };
                 });
-                return when.all(promises);
+                return Promise.all(promises);
             })
         },
         /**
@@ -88,7 +88,7 @@ var model = module.exports = Model(function(){
                         promises.push(promise);
                     };
                 });
-                return when.all(promises);
+                return Promise.all(promises);
             })
         },
         /**
@@ -104,7 +104,7 @@ var model = module.exports = Model(function(){
             });
             var catePromise = D('PostCate').where(where).delete();
             var tagPromise = D('PostTag').where(where).delete();
-            return when.all([
+            return Promise.all([
                 promise, catePromise, tagPromise
             ]).then(function(){
                 return ret;

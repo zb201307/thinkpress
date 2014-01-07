@@ -10,7 +10,7 @@ module.exports = Controller("Admin/BaseController", function(){
 			var promise2 = model._adminGetList(self.http).then(function(data){
 				self.assign("list", data);
 			});
-			return when.all([promise1, promise2]).then(function(){
+			return Promise.all([promise1, promise2]).then(function(){
 				self.display();
 			})
 		},

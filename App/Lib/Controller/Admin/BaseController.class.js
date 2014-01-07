@@ -19,7 +19,7 @@ module.exports = Controller(function(){
 		 */
 		checkLogin: function(){
 			var self = this;
-			var deferred = when.defer();
+			var deferred = getDefer();
 			this.session("login").then(function(value){
 				if (isEmpty(value)) {
 					deferred.reject();

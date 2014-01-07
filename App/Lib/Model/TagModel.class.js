@@ -36,7 +36,7 @@ var model = module.exports = Model(function(){
 				});
 				allPromise.push(promise);
 			});
-			return when.all(allPromise).then(function(){
+			return Promise.all(allPromise).then(function(){
 				return tag_ids;
 			});
 		},

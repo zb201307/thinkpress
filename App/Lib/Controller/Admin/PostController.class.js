@@ -18,7 +18,7 @@ module.exports = Controller("Admin/BaseController", function(){
 			var countPromise = model.count("id").then(function(count){
 				self.assign("count", count || 0);
 			});
-			return when.all([
+			return Promise.all([
 				listPromise,
 				countPromise
 			]).then(function(){
@@ -69,7 +69,7 @@ module.exports = Controller("Admin/BaseController", function(){
 				});
 				allPromise.push(catePromise);
 				//
-				return when.all(allPromise).then(function(){
+				return Promise.all(allPromise).then(function(){
 					self.display();
 				})
 			}else if (self.isPost()) {

@@ -34,7 +34,7 @@ var model = module.exports = Model(function(){
 					cate[item.id] = item.name;
 				})
 			})
-			return when.all([
+			return Promise.all([
 				postCatePromise,
 				catePromise
 			]).then(function(){

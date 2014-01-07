@@ -5,7 +5,7 @@
 E("return_home", function(controller, group, http){
 	console.log(http.pathname + " not found");
 	http.redirect("/");
-})
+});
 /**
  * 格式化日期
  * @param  {[type]} date    [description]
