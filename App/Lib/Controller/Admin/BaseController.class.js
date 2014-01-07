@@ -21,7 +21,7 @@ module.exports = Controller(function(){
 			var self = this;
 			var deferred = when.defer();
 			this.session("login").then(function(value){
-				if (is_empty(value)) {
+				if (isEmpty(value)) {
 					deferred.reject();
 					return self.redirect("/login");
 				};

@@ -1,4 +1,4 @@
-var filter = think_require("Filter").filter;
+var filter = thinkRequire("Filter").filter;
 /**
  * 数据过滤行为，对通用的字段数据进行过滤，保证数据安全
  * @return {[type]} [description]

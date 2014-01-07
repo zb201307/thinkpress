@@ -22,7 +22,7 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}         [description]
 		 */
 		getPostCate: function(post_id){
-			var where = is_array(post_id) ? {post_id: ["IN", post_id]} : {post_id: post_id};
+			var where = isArray(post_id) ? {post_id: ["IN", post_id]} : {post_id: post_id};
 			var postCate = [];
 			var postCatePromise = this.where(where).select().then(function(data){
 				postCate = data;
@@ -47,7 +47,7 @@ var model = module.exports = Model(function(){
 						data[item.post_id].push(cate[item.cate_id]);
 					};
 				});
-				return is_array(post_id) ? data : data[post_id];
+				return isArray(post_id) ? data : data[post_id];
 			})
 		},
 		/**
@@ -57,8 +57,8 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}          [description]
 		 */
 		updatePostCate: function(post_id, cate_ids){
-			if (!is_array(cate_ids)) {
-				return get_promise();
+			if (!isArray(cate_ids)) {
+				return getPromise();
 			};
 			var self = this;
 			return this.where({

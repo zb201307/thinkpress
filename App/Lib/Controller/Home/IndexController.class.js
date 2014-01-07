@@ -25,7 +25,7 @@ module.exports = Controller(function(){
                 status: "publish"
             }).select().then(function(data){
                 data = data.map(function(item){
-                    item.datetime = get_date(item.datetime);
+                    item.datetime = getDate(item.datetime);
                     return item;
                 })
                 self.assign("list", data);
@@ -71,11 +71,11 @@ module.exports = Controller(function(){
             var promise = model.where({
                 alias_title: alias_title
             }).field("id,title,content,datetime,type").find().then(function(data){
-                if (is_empty(data)) {
+                if (isEmpty(data)) {
                     console.log(alias_title + " not found");
                     return self.display("index:404");
                 };
-                data.datetime = get_date(data.datetime);
+                data.datetime = getDate(data.datetime);
                 self.assign("detail", data);
                 self.assign("title", data.title);
                 self.assign("url", specialPage ? "" : alias_title);
@@ -101,7 +101,7 @@ module.exports = Controller(function(){
                     if (!(year in result)) {
                         result[year] = [];
                     };
-                    item.datetime = get_date(item.datetime);
+                    item.datetime = getDate(item.datetime);
                     result[year].push(item);
                 });
                 self.assign("list", result);

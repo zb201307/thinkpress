@@ -11,7 +11,7 @@ module.exports = Controller("Admin/BaseController", function(){
 				type: "page"
 			}).order('datetime DESC').select().then(function(data){
 				data = (data || []).map(function(item){
-					item.datetime = get_date(item.datetime);
+					item.datetime = getDate(item.datetime);
 					return item;
 				})
 				self.assign("list", data);
@@ -56,13 +56,13 @@ module.exports = Controller("Admin/BaseController", function(){
 				}else{
 					var promise = null;
 					data.type = "page";
-					data.edit_dateTime = get_dateTime();
+					data.edit_dateTime = getDateTime();
 					data.content = require("marked")(data.markdown_content);
 					if (data.id) {
 						promise = D('Post').save(data);
 					}else{
 						delete data.id;
-						data.datetime = get_dateTime();
+						data.datetime = getDateTime();
 						promise = D('Post').add(data);
 					}
 					return promise.then(function(rows){

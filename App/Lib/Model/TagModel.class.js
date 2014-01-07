@@ -6,7 +6,7 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}      [description]
 		 */
 		getIds: function(tags){
-			if (!is_array(tags)) {
+			if (!isArray(tags)) {
 				return get_promise();
 			};
 			var self = this;
@@ -46,7 +46,7 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}     [description]
 		 */
 		getNames: function(ids){
-			if (!is_array(ids)) {
+			if (!isArray(ids)) {
 				return get_promise();
 			};
 			return this.where({

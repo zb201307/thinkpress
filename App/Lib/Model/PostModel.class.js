@@ -15,13 +15,13 @@ var model = module.exports = Model(function(){
             return this.field("id,title,status,datetime").where({
                 type: "post"
             }).page(http.get.page).order(order).select().then(function(data){
-                if (is_empty(data)) {
+                if (isEmpty(data)) {
                     return [];
                 };
                 var post_ids = [];
                 data = data.map(function(item){
                     post_ids.push(item.id);
-                    item.datetime = get_dateTime(item.datetime);
+                    item.datetime = getDateTime(item.datetime);
                     return item;
                 });
                 //文章标签
@@ -58,7 +58,7 @@ var model = module.exports = Model(function(){
             return this.select().then(function(data){
                 var promises = [];
                 (data || []).forEach(function(item){
-                    if (is_empty(item.markdown_content)) {
+                    if (isEmpty(item.markdown_content)) {
                         var markdown_content = toMarkdown(item.content);
                         var promise = self.update({
                             id: item.id,
@@ -79,7 +79,7 @@ var model = module.exports = Model(function(){
             return this.select().then(function(data){
                 var promises = [];
                 (data || []).forEach(function(item){
-                    if (!is_empty(item.markdown_content)) {
+                    if (!isEmpty(item.markdown_content)) {
                         var content = marked(item.markdown_content);
                         var promise = self.update({
                             id: item.id,
@@ -98,7 +98,7 @@ var model = module.exports = Model(function(){
          */
         _adminDeletePost: function(id){
             var ret = '';
-            var where = is_array(id) ? {post_id: ["IN", id]} : {post_id: id};
+            var where = isArray(id) ? {post_id: ["IN", id]} : {post_id: id};
             var promise = this.delete(id).then(function(rows){
                 ret = rows;
             });
@@ -134,9 +134,9 @@ var model = module.exports = Model(function(){
             var content = marked(data.markdown_content);
             data.content = content;
             if (!data.id) {
-                data.datetime = get_dateTime();
+                data.datetime = getDateTime();
             };
-            data.edit_datatime = get_dateTime();
+            data.edit_datatime = getDateTime();
             //文章的id
             var postId = data.id;
             var promise = null;

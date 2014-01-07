@@ -5,10 +5,6 @@ module.exports = Controller("Admin/BaseController", function(){
 			var model = D('Cate');
 			var self = this;
 			var promise1 = model.count("id").then(function(data){
-				if (data === false) {
-					console.log(model.getDbError());
-					self.end();
-				};
 				self.assign("count", data);
 			});
 			var promise2 = model._adminGetList(self.http).then(function(data){
@@ -20,7 +16,6 @@ module.exports = Controller("Admin/BaseController", function(){
 		},
 		itemAction: function(){
 			var model = D("Cate");
-			console.log(this.http.get);
 			return this.end();
 		}
 	}

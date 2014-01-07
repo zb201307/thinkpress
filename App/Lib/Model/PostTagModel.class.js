@@ -6,7 +6,7 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}      [description]
 		 */
 		updatePostTag: function(post_id, tags){
-			if (!is_array(tags)) {
+			if (!isArray(tags)) {
 				return get_promise();
 			};
 			var self = this;
@@ -36,7 +36,7 @@ var model = module.exports = Model(function(){
 		 * @return {[type]}         [description]
 		 */
 		getPostTag: function(post_id){
-			var where = is_array(post_id) ? {post_id: ["IN", post_id]} : {post_id: post_id};
+			var where = isArray(post_id) ? {post_id: ["IN", post_id]} : {post_id: post_id};
 			var tagModel = D('Tag');
 			return this.where(where).select().then(function(data){
 				var postTagList = data;
@@ -60,7 +60,7 @@ var model = module.exports = Model(function(){
 						var tag = tags[item.tag_id];
 						postTags[item.post_id].push(tag);
 					});
-					if (is_array(post_id)) {
+					if (isArray(post_id)) {
 						return postTags;
 					}else{
 						return Object.values(postTags)[0];

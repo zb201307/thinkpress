@@ -16,7 +16,7 @@ Date.format = function (date, pattern) {
 	if (!date) {
 		date = new Date; 
 	}else{
-		if(!is_date(date)){
+		if(!isDate(date)){
 			date = new Date(date);
 		}
 	}
@@ -44,7 +44,7 @@ Date.format = function (date, pattern) {
  * @param  {[type]} date [description]
  * @return {[type]}      [description]
  */
-global.get_date = function(date){
+global.getDate = function(date){
 	return Date.format(date);
 }
 /**
@@ -52,6 +52,6 @@ global.get_date = function(date){
  * @param  {[type]} date [description]
  * @return {[type]}      [description]
  */
-global.get_dateTime = function(date){
+global.getDateTime = function(date){
 	return Date.format(date, "yyyy-MM-dd hh:mm:ss");
 }
