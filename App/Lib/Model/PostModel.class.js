@@ -3,7 +3,7 @@ var marked = require("marked");
  * 文章模型
  * @return {[type]} [description]
  */
-var model = module.exports = Model(function(){
+var model = module.exports = Model("AdvModel", function(){
     return {
         /**
          * 文章列表
