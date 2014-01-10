@@ -5,9 +5,8 @@ log
 sql/
 test/
 output/
-App/Runtime/Data/app.pid
-App/Runtime/Data/_fields
+App/Runtime/Data/*
 output.tar.gz
-App/Runtime/Html/*.html
+App/Runtime/Html/*
 App/Runtime/Cache/*
 App/Runtime/Temp/*

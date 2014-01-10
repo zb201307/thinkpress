@@ -125,7 +125,7 @@ var model = module.exports = Model("AdvModel", function(){
                 }else if(id){
                     return this._adminDeletePost(id);
                 }else{
-                    return get_promise();
+                    return getPromise();
                 }
             };
             //更新或者添加内容
@@ -150,7 +150,7 @@ var model = module.exports = Model("AdvModel", function(){
             }
             return promise.then(function(){
                 if (!postId) {
-                    return get_promise();
+                    return getPromise();
                 };
                 var tags = (data.tag || "").split(",");
                 var cate_ids = (data.cate_ids || "").split(",");

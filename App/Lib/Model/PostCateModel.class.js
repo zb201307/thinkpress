@@ -65,7 +65,7 @@ var model = module.exports = Model(function(){
 				post_id: post_id
 			}).delete().then(function(){
 				if (cate_ids.length == 0 ) {
-					return get_promise();
+					return getPromise();
 				};
 				var data = cate_ids.map(function(id){
 					return {

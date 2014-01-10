@@ -7,7 +7,7 @@ var model = module.exports = Model(function(){
 		 */
 		getIds: function(tags){
 			if (!isArray(tags)) {
-				return get_promise();
+				return getPromise();
 			};
 			var self = this;
 			var allPromise = [];
@@ -47,7 +47,7 @@ var model = module.exports = Model(function(){
 		 */
 		getNames: function(ids){
 			if (!isArray(ids)) {
-				return get_promise();
+				return getPromise();
 			};
 			return this.where({
 				id: ["IN", ids]
