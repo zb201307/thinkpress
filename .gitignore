@@ -10,3 +10,4 @@ output.tar.gz
 App/Runtime/Html/*
 App/Runtime/Cache/*
 App/Runtime/Temp/*
+nohup.out
