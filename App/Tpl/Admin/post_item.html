@@ -35,8 +35,8 @@
         </div>
         <div class="panel-body">
           <ul id="cateList" class="list-unstyled">
-          <% cate.forEach(function(item){ %>
-            <li class="checkbox"><label><input type="checkbox" <%if(cate_ids.indexOf(item.id)>-1){%>checked<%}%> value="<%- item.id%>"> <%- item.name%></label></li>
+          <% cate.forEach(function(it){ %>
+            <li class="checkbox"><label><input type="checkbox" <%if(item.Cate.indexOf(it.id)>-1){%>checked<%}%> value="<%- it.id%>"> <%- it.name%></label></li>
           <%})%>
           </ul>
         </div>
@@ -49,8 +49,8 @@
         <div class="panel-body">
            <input type="email" class="form-control" id="field_tag" placeholder="添加标签，多个用英文逗号隔开">
             <div class="postTagList">
-              <% tag.forEach(function(item){%>
-              <a class="btn btn-default"><span><%-item%></span> <sup>x</sup></a>
+              <% item.Tag.forEach(function(item){%>
+              <a class="btn btn-default"><span><%-item.name%></span> <sup>x</sup></a>
               <%})%>
             </div>
         </div>

@@ -20,7 +20,7 @@ module.exports = Controller(function(){
 			var self = this;
 			var promise = model.page(this.get("page")).limit(20)
 			.field("id,datetime,title,alias_title")
-			.order("datetime DESC").where({
+			.order("datetime DESC").setRelation(false).where({
 				type: "post",
 				status: "publish"
 			}).select().then(function(data){
@@ -32,35 +32,6 @@ module.exports = Controller(function(){
 				self.display();
 			});
 			return promise;
-		},
-		testAction: function(){
-			var model = D('Post');
-			var promise = model.where({
-				'status': 'publish',
-				'type': 'post',
-				id: ['between', 1, 10],
-				_multi: true,
-				';"': 'xxx',
-				"title|content": [['like', '%title%'], ['like', '%content%']]
-			}).cache(600).where("status='publish'").page(100).field('id').order('id DESC').select().then(function(data){
-				//console.log(data);
-			})
-			this.end();
-			return promise;
-		},
-		convertAction: function(){
-			var self = this;
-			this.http.sendTime("Exec-Time");
-			var ip = this.ip();
-			this.end(ip+"");
-			//console.log("wwww")
-			//this.end();
-			// D('Post').contentToMarkdown().then(function(){
-			//     self.end("finish");
-			// })
-			// D('Post').markdownToContent().then(function(){
-			//     self.end("finish");
-			// })
 		},
 		/**
 		 * 详细页面
@@ -80,7 +51,7 @@ module.exports = Controller(function(){
 			}
 			var promise = model.where({
 				alias_title: alias_title
-			}).field("id,title,content,datetime,type").find().then(function(data){
+			}).setRelation(false).field("id,title,content,datetime,type").find().then(function(data){
 				if (isEmpty(data)) {
 					console.log(alias_title + " not found");
 					return self.display("index:404");
@@ -104,7 +75,7 @@ module.exports = Controller(function(){
 			.order("datetime DESC").where({
 				type: "post",
 				status: "publish"
-			}).select().then(function(data){
+			}).setRelation(false).select().then(function(data){
 				var result = {};
 				(data || []).forEach(function(item){
 					var year = Date.format(item.datetime, "yyyy") + " ";
@@ -129,7 +100,7 @@ module.exports = Controller(function(){
 
 			var model = D("Post");
 			var promise = model.field("title,alias_title,datetime,content")
-			.order("datetime DESC").where({
+			.order("datetime DESC").setRelation(false).where({
 				type: "post",
 				status: "publish"
 			}).limit(20).select().then(function(data){
@@ -140,6 +111,23 @@ module.exports = Controller(function(){
 		},
 		__call: function(){
 			this.redirect("/");
+		},
+		testAction: function(){
+			this.end();
+			// return D('Post').page(1,5).where({
+			// 	type: "post",
+			// 	status: "publish"
+			// }).order('id DESC').field('id,title').select().then(function(data){
+			// 	console.log(data);
+			// });
+			return D('Post').add({
+				title: "xxx",
+				Tag: [{
+					name: "yyyy"
+				}, {
+					name: "sdfasdfasdfasdf"
+				}]
+			})
 		}
 	}
 });

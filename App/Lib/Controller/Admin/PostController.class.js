@@ -11,19 +11,16 @@ module.exports = Controller("Admin/BaseController", function(){
 		 */
 		listAction: function(){
 			var self = this;
-			var model = self.model();
-			var listPromise = model._adminPostList(self.http).then(function(data){
-				self.assign("list", data || []);
-			});
-			var countPromise = model.count("id").then(function(count){
-				self.assign("count", count || 0);
-			});
-			return Promise.all([
-				listPromise,
-				countPromise
-			]).then(function(){
-				self.display();
-			});
+			return D('Post').order('id DESC').where({
+				type: "post"
+			}).field('id,title,datetime,status').page(this.get('page')).countSelect().then(function(data){
+				data.data = data.data.map(function(item){
+					item.datetime = getDateTime(item.datetime);
+					return item;
+				})
+				self.assign('list', data);
+				return self.display();
+			})
 		},
 		/**
 		 * 单条
@@ -34,48 +31,25 @@ module.exports = Controller("Admin/BaseController", function(){
 			var model = this.model();
 			if (self.isGet()) {
 				var id = self.get("id");
-				var allPromise = [];
-				//设置初始化数据，减少在模版里的数据类型判断
-				self.assign({
-					item: {},
-					cate_ids: [],
-					cate: [],
-					tag: []
-				});
-				if (id) {
-					//获取详细信息
-					var itemPromise = model.where({
-						type: "post",
-						id: id
-					}).find().then(function(data){
-						self.assign("item", data || {})
-					});
-					allPromise.push(itemPromise);
-					//获取已经选择的分类id
-					var postCatePromise = self.model("PostCate").getCateIds(id).then(function(data){
-						self.assign("cate_ids", data || []);
-					})
-					allPromise.push(postCatePromise);
-					//获取标签
-					var postTagModel = self.model("PostTag");
-					var postTagPromise = postTagModel.getPostTag(id).then(function(data){
-						self.assign("tag", data || []);
-					});
-					allPromise.push(postTagPromise);
+				if (!id) {
+					return this.redirect("/admin");
 				};
-				//分类列表
-				var catePromise = self.model("Cate")._adminGetList(true).then(function(data){
-					self.assign("cate", data || []);
-				});
-				allPromise.push(catePromise);
-				//
-				return Promise.all(allPromise).then(function(){
-					self.display();
+				var catePromise = D('Cate').select();
+				var postPromise = D('Post').where({
+					id: id
+				}).find();
+				return Promise.all([catePromise, postPromise]).then(function(data){
+					data[1].Cate = data[1].Cate.map(function(item){
+						return item.id;
+					})
+					self.assign('cate', data[0]);
+					self.assign('item', data[1]);
+					return self.display();
 				})
 			}else if (self.isPost()) {
-				return model._adminItemPost(self.http).then(function(rows){
+				return model.postItem(self.http).then(function(rows){
 					self.json({
-						errno: rows ? 0 : 1
+						errno: 0
 					});
 				})
 			};

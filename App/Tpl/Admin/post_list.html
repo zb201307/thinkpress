@@ -15,16 +15,16 @@
           </tr>
         </thead>
         <tbody>
-          <%list.forEach(function(item){%>
+          <%list.data.forEach(function(item){%>
           <tr data-id="<%- item.id%>">
             <td><%-item.id%></td>
             <td><%-item.title%></td>
             <td><%-item.datetime%></td>
-            <td><%item.cate.forEach(function(cateItem){%>
-            <span class="label label-default"><%-cateItem%></span>
+            <td><%item.Cate.forEach(function(cateItem){%>
+            <span class="label label-default"><%-cateItem.name%></span>
             <%})%></td>
-            <td><%item.tag.forEach(function(tagItem){%>
-            <span class="label label-default"><%-tagItem%></span>
+            <td><%item.Tag.forEach(function(tagItem){%>
+            <span class="label label-default"><%-tagItem.name%></span>
             <%})%></td>
             <td><%-item.status%></td>
             <td><a href="/admin/post/item?id=<%-item.id%>" title="编辑" class="glyphicon glyphicon-edit"></a>

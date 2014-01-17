@@ -9,7 +9,7 @@ module.exports = Controller("Admin/BaseController", function(){
 			var self = this;
 			return D("Post").page(self.get("post")).where({
 				type: "page"
-			}).order('datetime DESC').select().then(function(data){
+			}).setRelation(false).order('datetime DESC').select().then(function(data){
 				data = (data || []).map(function(item){
 					item.datetime = getDate(item.datetime);
 					return item;
