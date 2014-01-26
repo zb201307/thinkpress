@@ -7,7 +7,7 @@ module.exports = Controller("Admin/BaseController", function(){
 			var promise1 = model.count("id").then(function(data){
 				self.assign("count", data);
 			});
-			var promise2 = model._adminGetList(self.http).then(function(data){
+			var promise2 = model.select().then(function(data){
 				self.assign("list", data);
 			});
 			return Promise.all([promise1, promise2]).then(function(){
