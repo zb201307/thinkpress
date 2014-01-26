@@ -5,7 +5,7 @@ return array (
 	'TPL_LEFT_DELIMITER' => '<%',  //模版左界符
 	'TPL_RIGHT_DELIMITER' => '%>',  //模版右界符
 	'TPL_SUFFIX' => 'html',  //模板文件后缀名
-	'TPL_PATH' => 'App/Tpl',  //模板根目录
+	'TPL_PATH' => 'App/View',  //模板根目录
 	'STATIC_PATH' => 'www/resource/',  //静态资源的目录
 	'FILE_ENCODING' => 'utf-8',  //项目编码 utf-8或者gbk
 	'MOD_ENCODING_CHECK' => true,  //文件编码检测
