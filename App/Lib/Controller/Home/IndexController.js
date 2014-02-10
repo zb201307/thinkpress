@@ -105,7 +105,7 @@ module.exports = Controller(function(){
 				status: "publish"
 			}).limit(20).select().then(function(data){
 				self.assign("list", data || []);
-				self.display(TPL_PATH + "/Home/index_feed.xml");
+				self.display(VIEW_PATH + "/Home/index_feed.xml");
 			});
 			return promise;
 		},
