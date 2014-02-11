@@ -114,20 +114,6 @@ module.exports = Controller(function(){
 		},
 		testAction: function(){
 			this.end();
-			// return D('Post').page(1,5).where({
-			// 	type: "post",
-			// 	status: "publish"
-			// }).order('id DESC').field('id,title').select().then(function(data){
-			// 	console.log(data);
-			// });
-			return D('Post').add({
-				title: "xxx",
-				Tag: [{
-					name: "yyyy"
-				}, {
-					name: "sdfasdfasdfasdf"
-				}]
-			})
 		}
 	}
 });
