@@ -31,13 +31,17 @@ module.exports = Controller("Admin/BaseController", function(){
 			var model = this.model();
 			if (self.isGet()) {
 				var id = self.get("id");
-				if (!id) {
-					return this.redirect("/admin");
-				};
 				var catePromise = D('Cate').select();
-				var postPromise = D('Post').where({
-					id: id
-				}).find();
+				if (id) {
+					var postPromise = D('Post').where({
+						id: id
+					}).find();
+				}else{
+					var postPromise = getPromise({
+						Cate: [],
+						Tag: []
+					});
+				}
 				return Promise.all([catePromise, postPromise]).then(function(data){
 					data[1].Cate = data[1].Cate.map(function(item){
 						return item.id;
