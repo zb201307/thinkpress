@@ -7,14 +7,9 @@ module.exports = Controller("Admin/BaseController", function(){
 				var pwd = self.post("pwd").trim();
 				if (name == C('admin_username') && pwd == C('admin_password')) {
 					self.session("login", name);
-					self.json({
-						errno: 0
-					})
+					self.success();
 				}else{
-					self.json({
-						errno: 1,
-						errmsg: "用户名或者密码错误"
-					})
+					self.error(1, "用户名或者密码错误");
 				}
 			}else{
 				this.display();

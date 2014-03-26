@@ -28,7 +28,7 @@ module.exports = Controller("Admin/BaseController", function(){
 		 */
 		itemAction: function(){
 			var self = this;
-			var model = this.model();
+			var model = D('Post');
 			if (self.isGet()) {
 				var id = self.get("id");
 				var catePromise = D('Cate').select();
@@ -52,9 +52,7 @@ module.exports = Controller("Admin/BaseController", function(){
 				})
 			}else if (self.isPost()) {
 				return model.postItem(self.http).then(function(rows){
-					self.json({
-						errno: 0
-					});
+					self.success();
 				})
 			};
 		}
