@@ -67,6 +67,7 @@ module.exports = Controller("Admin/BaseController", function(){
 					}
 					return promise.then(function(rows){
 						self.end(rows);
+						self.rmHtmlCache();
 					})
 				}
 			}
