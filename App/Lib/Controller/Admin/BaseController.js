@@ -2,6 +2,7 @@
  * 后台controller基类
  * @return {[type]} [description]
  */
+var fs = require("fs");
 module.exports = Controller(function(){
 	return {
 		init: function(http){
@@ -22,12 +23,34 @@ module.exports = Controller(function(){
 			var deferred = getDefer();
 			this.session("login").then(function(value){
 				if (isEmpty(value)) {
-					deferred.reject();
+					//deferred.reject();
 					return self.redirect("/login");
 				};
 				deferred.resolve();
 			})
 			return deferred.promise;
+		},
+		/**
+		 * 删除HTML的静态化缓存
+		 * @return {[type]} [description]
+		 */
+		rmHtmlCache: function(path){
+			path = path || HTML_PATH;
+			var self = this;
+			fs.readdir(path, function(err, files){
+				if (err) {
+					return;
+				};
+				files.forEach(function(item){
+					var filePath = path + "/" + item;
+					var stat = fs.statSync(filePath);
+					if (stat.isFile()) {
+						fs.unlink(filePath, function(){});
+					}else if (stat.isDirectory()) {
+						self.rmHtmlCache(filePath);
+					};
+				})
+			})
 		}
 	}
 })

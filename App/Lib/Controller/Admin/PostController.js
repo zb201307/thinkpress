@@ -53,6 +53,8 @@ module.exports = Controller("Admin/BaseController", function(){
 			}else if (self.isPost()) {
 				return model.postItem(self.http).then(function(rows){
 					self.success();
+					//删除HTML静态化缓存
+					self.rmHtmlCache();
 				})
 			};
 		}
