@@ -77,7 +77,7 @@ module.exports = Controller(function(){
 				status: "publish"
 			}).setRelation(false).select().then(function(data){
 				var result = {};
-				(data || []).forEach(function(item){
+				data.forEach(function(item){
 					var year = Date.format(item.datetime, "yyyy") + " ";
 					if (!(year in result)) {
 						result[year] = [];
@@ -113,7 +113,7 @@ module.exports = Controller(function(){
 			this.redirect("/");
 		},
 		testAction: function(){
-			this.end();
+			this.end(this.ip());
 		}
 	}
 });
