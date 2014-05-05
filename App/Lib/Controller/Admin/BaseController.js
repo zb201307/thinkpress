@@ -35,7 +35,7 @@ module.exports = Controller(function(){
 		 * @return {[type]} [description]
 		 */
 		rmHtmlCache: function(path){
-			path = path || HTML_PATH;
+			path = path || C('html_cache_path');
 			var self = this;
 			fs.readdir(path, function(err, files){
 				if (err) {
