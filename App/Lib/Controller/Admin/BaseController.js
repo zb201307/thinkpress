@@ -20,15 +20,11 @@ module.exports = Controller(function(){
 		 */
 		checkLogin: function(){
 			var self = this;
-			var deferred = getDefer();
-			this.session("login").then(function(value){
+			return this.session("login").then(function(value){
 				if (isEmpty(value)) {
-					//deferred.reject();
 					return self.redirect("/login");
-				};
-				deferred.resolve();
+				}
 			})
-			return deferred.promise;
 		},
 		/**
 		 * 删除HTML的静态化缓存
