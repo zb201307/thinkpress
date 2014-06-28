@@ -114,6 +114,9 @@ module.exports = Controller(function(){
 		},
 		testAction: function(){
 			this.end(this.ip());
+		},
+		_404Action: function(){
+			return this.redirect("/");
 		}
 	}
 });
