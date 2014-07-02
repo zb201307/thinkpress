@@ -113,6 +113,7 @@ module.exports = Controller(function(){
 			this.redirect("/");
 		},
 		testAction: function(){
+			this.sendTime('Exec-Time');
 			this.end(this.ip());
 		},
 		_404Action: function(){
