@@ -28,7 +28,7 @@ return array (
 	'MOD_EXTERNAL_TO_INLINE' => false,  //外链资源编译为内联资源
 	'MOD_STRING_REPLACE' => false,  //代码替换功能
     'IMG_DATAURI_SUPPORT_IE' => false,
-    'STATIC_URL_PREFIX' => 'http://st.welefen.com',
+   // 'STATIC_URL_PREFIX' => 'http://st.welefen.com',
 	'MOD_STATIC_VERSION' => 2  //静态文件版本号，1或者true为query,2为新文件模式
 );
 
