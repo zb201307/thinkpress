@@ -436,7 +436,7 @@ footer.footer {
 	width: 100%;
 }
 footer.footer .footer-content {
-	height: 40px;
+	height: 45px;
 }
 footer.footer .footer-content .copyright {
 	text-align: right;
@@ -444,7 +444,7 @@ footer.footer .footer-content .copyright {
 footer.footer .footer-content .copyright span {
 	color: #a1a1a1;
 	font-size: 14px;
-	line-height: 40px;
+	line-height: 45px;
 }
 footer.footer .footer-content .copyright span a {
 	color: #a1a1a1;
