@@ -61,7 +61,7 @@ var model = module.exports = Model("AdvModel", function(){
             var id = http.post.id;
             //删除操作
             if (http.post.method === 'delete') {
-                return this.delete(id);
+                return this.where({id: id}).delete();
             };
             //更新或者添加内容
             var data = http.post;
