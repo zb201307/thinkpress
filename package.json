@@ -11,7 +11,7 @@
       "email": "welefen@gmail.com"
   }],
   "dependencies": {
-      "thinkjs": "0.1.27",
+      "thinkjs": "*",
       "marked": "0.2.109"
   },
   "keywords": [
