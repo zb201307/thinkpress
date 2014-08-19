@@ -22,7 +22,14 @@ module.exports = Controller(function(){
 			var self = this;
 			return this.session("login").then(function(value){
 				if (isEmpty(value)) {
-					return self.redirect("/login");
+					if (self.isAjax()) {
+						return self.error(403);
+					}else{
+						return self.redirect("/login");
+					}
+				}else{
+					self.login = value;
+					self.assign('login', value)
 				}
 			})
 		},

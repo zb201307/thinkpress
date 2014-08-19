@@ -38,7 +38,8 @@ module.exports = Controller(function(){
 		 * @param  {[type]} alias_title [description]
 		 * @return {[type]}             [description]
 		 */
-		detailAction: function(alias_title){
+		detailAction: function(){
+			var alias_title = this.get('alias_title');
 			if (!alias_title) {
 				return this.redirect("/");
 			};
