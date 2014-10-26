@@ -18,6 +18,7 @@ module.exports = Controller("Admin/BaseController", function(){
 					item.datetime = getDateTime(item.datetime);
 					return item;
 				})
+				self.assign('pagerData', data);
 				self.assign('list', data);
 				return self.display();
 			})

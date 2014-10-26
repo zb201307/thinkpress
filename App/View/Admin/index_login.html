@@ -36,11 +36,11 @@ $(function(){
     $('.btn-login').click(function(event){
         event.preventDefault();
         var name = $('#login-name').val().trim();
-        if (name.length < 6) {
+        if (name.length < 4) {
           return $('#login-name').focus();
         };
         var pwd = $('#login-pass').val().trim();
-        if (pwd.length < 8) {
+        if (pwd.length < 4) {
           return $('#login-pass').focus();
         };
         $.post("/login",{
