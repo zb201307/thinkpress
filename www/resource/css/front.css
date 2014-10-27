@@ -432,8 +432,9 @@ section.main .block-contents h1.title {
 }
 footer.footer {
 	background-color: #383838;
-	margin-top: 30px;
 	width: 100%;
+	position: absolute;
+	bottom: 0;
 }
 footer.footer .footer-content {
 	height: 45px;
