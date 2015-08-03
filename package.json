@@ -1,7 +1,7 @@
 {
   "name": "thinkpress",
   "description": "a nodejs blog",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "author": {
       "name": "welefen",
       "email": "welefen@gmail.com"
@@ -12,7 +12,7 @@
   }],
   "dependencies": {
       "thinkjs": "*",
-      "marked": "0.2.109"
+      "marked": "0.3.3"
   },
   "keywords": [
       "thinkpress",

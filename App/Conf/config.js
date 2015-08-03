@@ -1,11 +1,11 @@
 module.exports = {
+    url_resource_on: true,
     "db_host": "127.0.0.1",
     "db_name": "www.welefen.com",
     "db_user": "root",
     "db_pwd": "root",
     "db_prefix": "thinkpress_",
     "db_nums_per_page": 10,
-    "url_resource_on": true,
     "admin_username": "admin",
     "admin_password": "admin",
     "show_exec_time": true,
